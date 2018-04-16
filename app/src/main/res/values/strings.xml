@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">CR APP</string>
+    <string name="app_name">CR</string>
     <string name="action_settings_str">Settings</string>
     <string name="settings_title_tip">Settings</string>
     <!-- action for debug start -->
     <string name="action_client_str">Client</string>
     <string name="action_server_str">Server</string>
     <string name="action_nfc_str">NFC</string>
-    <string name="action_analysis_str">上传</string>
+    <string name="action_analysis_str">Upload</string>
     <!-- action for debug end -->
     <string name="client">Client</string>
     <string name="server">Server</string>
@@ -16,8 +16,8 @@
     <string name="btn_blth_connect">Connect</string>
     <string name="btn_blth_visiblity">Bluetooth visibility setting</string>
     <string name="btn_blth_disconnect">Disconnect</string>
-    <string name="connect_state_init">未连接</string>
-    <string name="detected_userid_init">请刷卡</string>
+    <string name="connect_state_init">Disconnected</string>
+    <string name="detected_userid_init">Scan your IDCard</string>
     <string name="tv_user_detect_tip">XXX</string>
     <string name="progress_scaning">Scaning</string>
     <string name="progress_connecting">Connecting</string>
@@ -25,20 +25,20 @@
     <string name="write_tip">Input something</string>
     <string name="bluetooth_unopened">Bluetooth is unopened, please open the Bluetooth first</string>
     <string name="denied_required_permission">Permissions denied. You can change them in Settings &gt; Apps.</string>
-    <string name="bt_connected_xn">蓝牙已连接</string>
-    <string name="bt_disconnected_xn">蓝牙未连接</string>
-    <string name="connected_success_tip">已连接到设备：</string>
-    <string name="bt_unsupported">设备不支持蓝牙？</string>
-    <string name="connected_failed_tip">连接失败</string>
-    <string name="disconnected_device_tip">与设备断开连接</string>
-    <string name="bt_data_received_success">数据接收成功:</string>
-    <string name="bt_data_send_success">数据发生成功:</string>
-    <string name="developer_title_tip">开发调试界面</string>
-    <string name="et_bt_connected_name">请输入蓝牙名称</string>
-    <string name="et_bt_connected_address">请输入蓝牙地址</string>
-    <string name="bt_data_received_show">接收到的数据：</string>
-    <string name="xn_weighed_str">称重</string>
-    <string name="xn_report_str">统计</string>
+    <string name="bt_connected_xn">BT connected</string>
+    <string name="bt_disconnected_xn">BT disconnected</string>
+    <string name="connected_success_tip">Connected devices：</string>
+    <string name="bt_unsupported">Unsupported BT?</string>
+    <string name="connected_failed_tip">Connect fail</string>
+    <string name="disconnected_device_tip">Disconnected</string>
+    <string name="bt_data_received_success">Data received success:</string>
+    <string name="bt_data_send_success">Data sent success:</string>
+    <string name="developer_title_tip">Debug</string>
+    <string name="et_bt_connected_name">Please input bt Name</string>
+    <string name="et_bt_connected_address">Please input bt address</string>
+    <string name="bt_data_received_show">Received Data:</string>
+    <string name="xn_weighed_str">Weight</string>
+    <string name="xn_report_str">Report</string>
     <string name="btn_upload_weight_str">Upload</string>
     <string name="tv_weight_count_tip"> kg</string>
     <string name="tv_weight_init_tip">--</string>
@@ -55,8 +55,7 @@
     <string name="msg_nonfc">No NFC hardware found, Program will NOT work.</string>
     <string name="msg_nfcdisabled">NFC hardware has been disabled, Please enable it first. (using the \'Setting\' button to turn it on or off)</string>
     <string name="msg_nocard">No Card been read, Please take the card near to the back cover of phone and try again</string>
-    <string name="msg_copied">Card information has been copied to clipboard
-</string>
+    <string name="msg_copied">Card information has been copied to clipboard</string>
     <string name="lab_id">ID:</string>
     <string name="lab_pmm">PMm:</string>
     <string name="lab_serl">SEL:</string>
@@ -109,26 +108,26 @@
     <string name="tv_litter_cost_tip">Cost:</string>
     <string name="tv_litter_earning_tip">Earning:</string>
     <string name="tv_litter_money_tip">RMB</string>
-    <string name="tv_litter_type_tip">未知类别</string>
-    <string name="litter_union_type">综合垃圾</string>
-    <string name="litter_recyclable_type">可回收</string>
-    <string name="upload_success">上传成功</string>
-    <string name="upload_fail">上传失败</string>
-    <string name="litter_is_empty">没有数据可显示</string>
-    <string name="userid_query_hint">请输入用户编号</string>
-    <string name="btn_litter_data_fetch_str">查询</string>
-    <string name="btn_litter_data_fetch_clean_str">清空</string>
-    <string name="report_userID_title_str">用户编号</string>
-    <string name="report_userName_title_str">用户名</string>
-    <string name="report_littertypeID_title_str">垃圾类型</string>
-    <string name="report_weight_title_str">重量</string>
-    <string name="report_litterdate_title_str">日期</string>
-    <string name="litterdata_upload_btn_str">选择</string>
-    <string name="litterdata_upload_title">上传</string>
-    <string name="ld_upload_path_title_str">数据文件:</string>
-    <string name="litterdatafilename">请选文件名为:litterdata.txt的数据源文件</string>
-    <string name="litterdatafile_not_exsit">数据源文件未加载，请选择</string>
-    <string name="litterdatafile_empty">数据源文件没有数据</string>
-    <string name="tv_user_name_test">"测试用户"</string>
+    <string name="tv_litter_type_tip">Unknow</string>
+    <string name="litter_union_type">Mixed</string>
+    <string name="litter_recyclable_type">Recyclable</string>
+    <string name="upload_success">Upload success</string>
+    <string name="upload_fail">Upload fail</string>
+    <string name="litter_is_empty">No data</string>
+    <string name="userid_query_hint">Please input user ID</string>
+    <string name="btn_litter_data_fetch_str">Search</string>
+    <string name="btn_litter_data_fetch_clean_str">Reset</string>
+    <string name="report_userID_title_str">ID</string>
+    <string name="report_userName_title_str">Name</string>
+    <string name="report_littertypeID_title_str">Litter Type</string>
+    <string name="report_weight_title_str">Weight</string>
+    <string name="report_litterdate_title_str">Date</string>
+    <string name="litterdata_upload_btn_str">Select</string>
+    <string name="litterdata_upload_title">Upload</string>
+    <string name="ld_upload_path_title_str">Data file:</string>
+    <string name="litterdatafilename">Please select file named:litterdata.txt</string>
+    <string name="litterdatafile_not_exsit">Data source file is not loaded,please select</string>
+    <string name="litterdatafile_empty">Data source file is empty</string>
+    <string name="tv_user_name_test">Tester</string>
 
 </resources>
