@@ -2,7 +2,7 @@ package com.crwork.app.util;
 
 import com.crwork.app.domain.LitterDomain;
 
-public class WeightUploadService {
+public class LitterWeightUploadService {
 
 	/**
 	 * upload weight data to service

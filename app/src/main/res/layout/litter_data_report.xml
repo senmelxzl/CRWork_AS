@@ -27,7 +27,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="7"
             android:gravity="center"
-            android:hint="@string/userid_query_hint" />
+            android:hint="@string/userid_query_hint"
+            android:inputType="number"
+            android:selectAllOnFocus="false"
+            android:singleLine="true" />
 
         <Button
             android:id="@+id/litter_data_fetch_clean"
@@ -52,7 +55,7 @@
         android:id="@+id/litterdata_title_layout_report"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/litterdata_title_layout" />
+        layout="@layout/litter_data_title" />
 
     <ListView
         android:id="@+id/lv_litter_data_list"

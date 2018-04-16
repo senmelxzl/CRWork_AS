@@ -36,8 +36,8 @@ import android.widget.Toast;
  * @author xiezhenlin
  *
  */
-public class WeighActivity extends Activity implements OnClickListener {
-	private final static String TAG = "WeighActivity";
+public class LitterWeighActivity extends Activity implements OnClickListener {
+	private final static String TAG = "LitterWeighActivity";
 	private boolean LOG_DEBUG = false;
 	private BluetoothAdapter mBluetoothAdapter;
 	private int REQUEST_ENABLE_BT = 1;
@@ -64,7 +64,6 @@ public class WeighActivity extends Activity implements OnClickListener {
 	private int litter_type_ID = LitterUtil.LITTER_TYPE_NO_R;
 	private boolean weigh_ready = false;
 	private int userID = 19000102;
-	private String userName = "Tester";
 	private boolean userdetected = false;
 	private DecimalFormat df = new DecimalFormat("######0.00");
 
@@ -403,7 +402,7 @@ public class WeighActivity extends Activity implements OnClickListener {
 		if (userID > 0) {
 			userdetected = true;
 			tv_user_detect_id.setText(String.valueOf(userID));
-			tv_user_detect_name.setText(userName);
+			tv_user_detect_name.setText(mContext.getResources().getString(R.string.tv_user_name_test));
 		}
 	}
 }

@@ -19,12 +19,12 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 /**
- * FileExplorerActivity
+ * LitterDataFileExplorerActivity
  * 
  * @author xiezhenlin
  *
  */
-public class FileExplorerActivity extends Activity implements AdapterView.OnItemClickListener {
+public class LitterDataFileExplorerActivity extends Activity implements AdapterView.OnItemClickListener {
 
 	private static final String LITTERDATA_FILE_NAME = "litterdata.txt";
 	private ListView listView;
@@ -38,7 +38,7 @@ public class FileExplorerActivity extends Activity implements AdapterView.OnItem
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_file_explorer);
 		listView = (ListView) findViewById(R.id.file_list_view);
-		adapter = new SimpleAdapter(this, list, R.layout.ld_file_list_item, new String[] { "name", "img" },
+		adapter = new SimpleAdapter(this, list, R.layout.litter_data_source_file_list_item, new String[] { "name", "img" },
 				new int[] { R.id.filename, R.id.fileimg });
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(this);

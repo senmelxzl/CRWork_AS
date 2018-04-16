@@ -26,6 +26,8 @@
             android:layout_gravity="center"
             android:layout_margin="5dp"
             android:layout_weight="5"
+            android:ellipsize="end"
+            android:singleLine="true"
             android:textSize="14sp" />
 
         <Button
@@ -43,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ld_upload_path_llt"
-        layout="@layout/litterdata_title_layout" />
+        layout="@layout/litter_data_title" />
 
     <FrameLayout
         android:id="@+id/ld_upload_content_listdata_view"

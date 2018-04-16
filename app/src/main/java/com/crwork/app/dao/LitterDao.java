@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-import com.crwork.app.database.WeightDatabaseHelper;
+import com.crwork.app.database.LitterWeightDatabaseHelper;
 import com.crwork.app.domain.LitterDomain;
 import com.crwork.app.util.LitterUtil;
 
@@ -22,10 +22,10 @@ import android.util.Log;
  */
 public class LitterDao {
 	private final static String TAG = "LitterDao";
-	private WeightDatabaseHelper mWeightDatabaseHelper;
+	private LitterWeightDatabaseHelper mLitterWeightDatabaseHelper;
 
 	public LitterDao(Context context) {
-		mWeightDatabaseHelper = new WeightDatabaseHelper(context);
+		mLitterWeightDatabaseHelper = new LitterWeightDatabaseHelper(context);
 
 	}
 
@@ -37,7 +37,7 @@ public class LitterDao {
 	 */
 	public boolean insertLitterData(LitterDomain mLitterDomain) {
 		Log.i(TAG, "----insert----1");
-		SQLiteDatabase db = mWeightDatabaseHelper.getWritableDatabase();
+		SQLiteDatabase db = mLitterWeightDatabaseHelper.getWritableDatabase();
 		Log.i(TAG,
 				"----insert----2" + "userID:" + String.valueOf(mLitterDomain.getUserID()) + " LittertypeID:"
 						+ String.valueOf(mLitterDomain.getLittertypeID()) + " Weight:"
@@ -48,7 +48,7 @@ public class LitterDao {
 		values.put("littertypeID", mLitterDomain.getLittertypeID());
 		values.put("weight", mLitterDomain.getWeight());
 		values.put("litterdate", mLitterDomain.getLitterdate());
-		db.insert(WeightDatabaseHelper.LITTERTABLE, null, values);
+		db.insert(LitterWeightDatabaseHelper.LITTERTABLE, null, values);
 		Log.i(TAG, "----insert----3");
 		db.close();
 		return true;
@@ -62,13 +62,13 @@ public class LitterDao {
 	 */
 	public ArrayList<LitterDomain> queryLitterData(int userID) {
 		Log.i(TAG, "----query----1");
-		SQLiteDatabase db = mWeightDatabaseHelper.getReadableDatabase();
+		SQLiteDatabase db = mLitterWeightDatabaseHelper.getReadableDatabase();
 		Cursor cursor;
 		ArrayList<LitterDomain> list = new ArrayList<LitterDomain>();
 		if (userID == 0) {
-			cursor = db.rawQuery("SELECT * FROM " + WeightDatabaseHelper.LITTERTABLE, null);
+			cursor = db.rawQuery("SELECT * FROM " + LitterWeightDatabaseHelper.LITTERTABLE, null);
 		} else {
-			cursor = db.rawQuery("SELECT * FROM " + WeightDatabaseHelper.LITTERTABLE + " where userID=?",
+			cursor = db.rawQuery("SELECT * FROM " + LitterWeightDatabaseHelper.LITTERTABLE + " where userID=?",
 					new String[] { String.valueOf(userID) });
 		}
 		Log.i(TAG, "----query----2" + String.valueOf(cursor));

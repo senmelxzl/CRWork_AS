@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.crwork.app.R;
-import com.crwork.app.adapter.LitterReportAdapter;
+import com.crwork.app.adapter.LitterDataReportAdapter;
 import com.crwork.app.dao.LitterDao;
 import com.crwork.app.domain.LitterDomain;
 
@@ -25,12 +25,12 @@ import android.widget.Toast;
  * @author xiezhenlin
  *
  */
-public class ReportActivity extends Activity implements OnClickListener {
-	private final static String TAG = "ReportActivity";
+public class LitterDataReportActivity extends Activity implements OnClickListener {
+	private final static String TAG = "LitterDataReportActivity";
 	private ListView lv_litter_data_list;
 	private EditText userid_fetch;
 	private Button litter_data_fetch, litter_data_fetch_clean;
-	private LitterReportAdapter mLitterReportAdapter;
+	private LitterDataReportAdapter mLitterReportAdapter;
 	private LitterDao mLitterDao;
 	ArrayList<LitterDomain> mLitterDomainList;
 	private int userID_fetch = 0;
@@ -40,7 +40,7 @@ public class ReportActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		this.setContentView(R.layout.report);
+		this.setContentView(R.layout.litter_data_report);
 		mLitterDao = new LitterDao(this);
 		initview();
 	}
@@ -61,7 +61,7 @@ public class ReportActivity extends Activity implements OnClickListener {
 		if (litterlistSize == 0) {
 			Toast.makeText(this, getResources().getString(R.string.litter_is_empty), Toast.LENGTH_LONG).show();
 		} else {
-			mLitterReportAdapter = new LitterReportAdapter(mLitterDomainList, this);
+			mLitterReportAdapter = new LitterDataReportAdapter(mLitterDomainList, this);
 			lv_litter_data_list.setAdapter(mLitterReportAdapter);
 		}
 	}

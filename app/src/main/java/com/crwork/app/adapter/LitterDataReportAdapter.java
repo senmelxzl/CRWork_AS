@@ -12,11 +12,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class LitterReportAdapter extends BaseAdapter  {
+public class LitterDataReportAdapter extends BaseAdapter  {
 	private ArrayList<LitterDomain> mLitterDomainList; 
     private Context mContext; 
       
-    public LitterReportAdapter(ArrayList<LitterDomain> list, Context context) { 
+    public LitterDataReportAdapter(ArrayList<LitterDomain> list, Context context) {
     	mLitterDomainList = list; 
         mContext = context; 
     } 
@@ -47,9 +47,9 @@ public class LitterReportAdapter extends BaseAdapter  {
         Holder holder = null; 
         if (convertView == null) { 
             LayoutInflater inflater = LayoutInflater.from(mContext); 
-            convertView = inflater.inflate(R.layout.list_litter_data_item, null); 
+            convertView = inflater.inflate(R.layout.litter_data_list_item, null);
             holder = new Holder(); 
-            holder.userID = (TextView)convertView.findViewById(R.id.userID); 
+            holder.userID = (TextView)convertView.findViewById(R.id.userID);
             holder.userName = (TextView)convertView.findViewById(R.id.userName);
             holder.littertypeID = (TextView)convertView.findViewById(R.id.littertypeID); 
             holder.weight = (TextView)convertView.findViewById(R.id.weight);   
@@ -59,13 +59,13 @@ public class LitterReportAdapter extends BaseAdapter  {
             holder = (Holder) convertView.getTag(); 
         } 
         holder.userID.setText(String.valueOf(mLitterDomainList.get(position).getUserID())); 
-        holder.userName.setText("��ӽ��"); 
+        holder.userName.setText(mContext.getResources().getString(R.string.tv_user_name_test));
         holder.littertypeID.setText(mLitterDomainList.get(position).getLittertypeID() == 0
 				? mContext.getResources().getString(R.string.litter_union_type)
 				: mContext.getResources().getString(R.string.litter_recyclable_type)); 
         holder.weight.setText(String.valueOf(mLitterDomainList.get(position).getWeight())
-				+ mContext.getResources().getString(R.string.tv_weight_count_tip)); 
-        holder.litterdate.setText(mLitterDomainList.get(position).getLitterdate()); 
+				+ mContext.getResources().getString(R.string.tv_weight_count_tip));
+        holder.litterdate.setText(mLitterDomainList.get(position).getLitterdate());
         return convertView; 
     } 
   

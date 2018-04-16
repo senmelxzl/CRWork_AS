@@ -94,7 +94,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			startActivity(nfc);
 			break;
 		case R.id.action_analysis:// analysis litter data
-			Intent analysis = new Intent(this, UploadLitterDataActivity.class);
+			Intent analysis = new Intent(this, LitterDataUploadActivity.class);
 			startActivity(analysis);
 			break;
 		default:
@@ -141,11 +141,11 @@ public class MainActivity extends Activity implements OnClickListener {
 	public void onClick(View view) {
 		switch (view.getId()) {
 		case R.id.btn_weighed:
-			Intent client = new Intent(this, WeighActivity.class);
+			Intent client = new Intent(this, LitterWeighActivity.class);
 			startActivity(client);
 			break;
 		case R.id.btn_report:
-			Intent report = new Intent(this, ReportActivity.class);
+			Intent report = new Intent(this, LitterDataReportActivity.class);
 			startActivity(report);
 			break;
 		default:

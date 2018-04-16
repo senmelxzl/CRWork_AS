@@ -112,4 +112,5 @@
     <string name="tv_litter_type_tip">未知类别</string>
     <string name="litter_union_type">综合垃圾</string>
     <string name="litter_recyclable_type">可回收</string>
+	<string name="tv_user_name_test">"测试用户"</string>
 </resources>

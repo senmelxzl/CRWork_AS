@@ -55,7 +55,8 @@
     <string name="msg_nonfc">No NFC hardware found, Program will NOT work.</string>
     <string name="msg_nfcdisabled">NFC hardware has been disabled, Please enable it first. (using the \'Setting\' button to turn it on or off)</string>
     <string name="msg_nocard">No Card been read, Please take the card near to the back cover of phone and try again</string>
-    <string name="msg_copied">Card information has been copied to clipboard</string>
+    <string name="msg_copied">Card information has been copied to clipboard
+</string>
     <string name="lab_id">ID:</string>
     <string name="lab_pmm">PMm:</string>
     <string name="lab_serl">SEL:</string>
@@ -114,7 +115,7 @@
     <string name="upload_success">上传成功</string>
     <string name="upload_fail">上传失败</string>
     <string name="litter_is_empty">没有数据可显示</string>
-    <string name="userid_query_hint">请输入用户ID</string>
+    <string name="userid_query_hint">请输入用户编号</string>
     <string name="btn_litter_data_fetch_str">查询</string>
     <string name="btn_litter_data_fetch_clean_str">清空</string>
     <string name="report_userID_title_str">用户编号</string>
@@ -128,5 +129,6 @@
     <string name="litterdatafilename">请选文件名为:litterdata.txt的数据源文件</string>
     <string name="litterdatafile_not_exsit">数据源文件未加载，请选择</string>
     <string name="litterdatafile_empty">数据源文件没有数据</string>
+    <string name="tv_user_name_test">"测试用户"</string>
 
 </resources>

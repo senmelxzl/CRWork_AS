@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import com.crwork.app.R;
-import com.crwork.app.adapter.LitterReportAdapter;
+import com.crwork.app.adapter.LitterDataReportAdapter;
 import com.crwork.app.dao.LitterDao;
 import com.crwork.app.domain.LitterDomain;
 
@@ -20,12 +20,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * UploadLitterDataActivity
+ * LitterDataUploadActivity
  * 
  * @author xiezhenlin
  *
  */
-public class UploadLitterDataActivity extends Activity implements OnClickListener {
+public class LitterDataUploadActivity extends Activity implements OnClickListener {
 	private Context mContext;
 	private final static int XN_LD_SELECTED = 1;
 
@@ -40,7 +40,7 @@ public class UploadLitterDataActivity extends Activity implements OnClickListene
 
 	private ListView listView;
 	private TextView ld_upload_content_listdata_empty;
-	private LitterReportAdapter mLitterReportAdapter;
+	private LitterDataReportAdapter mLitterReportAdapter;
 	private LitterDao mLitterDao;
 	private ArrayList<LitterDomain> mLitterDomainList = null;
 
@@ -48,7 +48,7 @@ public class UploadLitterDataActivity extends Activity implements OnClickListene
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.uploadlitterdata);
+		setContentView(R.layout.litter_data_upload);
 		LoadSet();
 		LoadView();
 		LoadData();
@@ -81,7 +81,7 @@ public class UploadLitterDataActivity extends Activity implements OnClickListene
 			ld_file_name.setText(dataFile.getName());
 			mLitterDomainList = mLitterDao.readTXT(dataFile);
 			if (mLitterDomainList != null && mLitterDomainList.size() != 0) {
-				mLitterReportAdapter = new LitterReportAdapter(mLitterDomainList, this);
+				mLitterReportAdapter = new LitterDataReportAdapter(mLitterDomainList, this);
 				dataShowView(STATE_HAS_DATA);
 				listView.setAdapter(mLitterReportAdapter);
 			} else {
@@ -131,7 +131,7 @@ public class UploadLitterDataActivity extends Activity implements OnClickListene
 	 */
 	private void openFileSelect() {
 		// TODO Auto-generated method stub
-		Intent intent = new Intent(this, FileExplorerActivity.class);
+		Intent intent = new Intent(this, LitterDataFileExplorerActivity.class);
 		startActivityForResult(intent, XN_LD_SELECTED);
 	}
 

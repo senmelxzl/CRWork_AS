@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class WeightDatabaseHelper extends SQLiteOpenHelper {
+public class LitterWeightDatabaseHelper extends SQLiteOpenHelper {
 	// DB name
 	public static final String DBNAME = "crwork.db";
 	// DB version number
@@ -15,7 +15,7 @@ public class WeightDatabaseHelper extends SQLiteOpenHelper {
 	public static final String USERTABLE = "user";
 	public static final String VILLAGETABLE = "village";
 
-	public WeightDatabaseHelper(Context context) {
+	public LitterWeightDatabaseHelper(Context context) {
 		super(context, DBNAME, null, VERSION);
 		// TODO Auto-generated constructor stub
 	}
