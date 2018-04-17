@@ -50,7 +50,7 @@
     <string name="btn_exit">退出</string>
     <string name="tip_nfc_notfound">没有NFC硬件！</string>
     <string name="tip_nfc_disabled">NFC已禁用</string>
-    <string name="tip_nfc_enabled">NFC已启用</string>	
+    <string name="tip_nfc_enabled">NFC已启用</string>
     <string name="msg_reading">读取中...</string>
     <string name="msg_nonfc">没有找到NFC硬件，程序无法工作！</string>
     <string name="msg_nfcdisabled">NFC已被禁用，请先启用该硬件。可以使用下边的 ‘设置’ 按钮控制NFC传感器的开关。</string>
@@ -128,7 +128,7 @@
     <string name="ld_upload_path_title_str">数据文件:</string>
     <string name="litterdatafilename">请选文件名为:litterdata.txt的数据源文件</string>
     <string name="litterdatafile_not_exsit">数据源文件未加载，请选择</string>
-    <string name="litterdatafile_empty">数据源文件没有数据</string>
+    <string name="litterdatafile_empty">数据源文件没有数据！\n\n请选文件名为:litterdata.txt的数据源文件</string>
     <string name="tv_user_name_test">"测试用户"</string>
 
 </resources>

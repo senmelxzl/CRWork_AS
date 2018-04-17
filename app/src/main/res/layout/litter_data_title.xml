@@ -13,7 +13,7 @@
         android:gravity="center"
         android:text="@string/report_userID_title_str"
         android:textColor="@color/black"
-        android:textSize="14sp" />
+        android:textSize="@dimen/text_litter_items" />
 
     <TextView
         android:id="@+id/userName_title"
@@ -23,7 +23,7 @@
         android:gravity="center"
         android:text="@string/report_userName_title_str"
         android:textColor="@color/black"
-        android:textSize="14sp" />
+        android:textSize="@dimen/text_litter_items" />
 
     <TextView
         android:id="@+id/littertypeID_title"
@@ -33,7 +33,7 @@
         android:gravity="center"
         android:text="@string/report_littertypeID_title_str"
         android:textColor="@color/black"
-        android:textSize="14sp" />
+        android:textSize="@dimen/text_litter_items" />
 
     <TextView
         android:id="@+id/weight_title"
@@ -43,7 +43,7 @@
         android:gravity="center"
         android:text="@string/report_weight_title_str"
         android:textColor="@color/black"
-        android:textSize="14sp" />
+        android:textSize="@dimen/text_litter_items" />
 
     <TextView
         android:id="@+id/litterdate_title"
@@ -53,6 +53,6 @@
         android:gravity="center"
         android:text="@string/report_litterdate_title_str"
         android:textColor="@color/black"
-        android:textSize="14sp" />
+        android:textSize="@dimen/text_litter_items" />
 
 </LinearLayout>

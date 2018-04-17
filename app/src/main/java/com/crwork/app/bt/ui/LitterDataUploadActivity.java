@@ -32,7 +32,7 @@ public class LitterDataUploadActivity extends Activity implements OnClickListene
 	private final static int STATE_NO_DATA_FILE = 0;
 	private final static int STATE_NO_DATA = 1;
 	private final static int STATE_HAS_DATA = 2;
-	private Button ld_loadfile_btn;
+	private TextView ld_loadfile_btn;
 	private Button ld_upload_btn;
 	private TextView ld_file_name;
 	private File dataFile = null;
@@ -62,7 +62,7 @@ public class LitterDataUploadActivity extends Activity implements OnClickListene
 
 	private void LoadView() {
 		// TODO Auto-generated method stub
-		ld_loadfile_btn = (Button) findViewById(R.id.ld_loadfile_btn);
+		ld_loadfile_btn = (TextView) findViewById(R.id.ld_loadfile_btn);
 		ld_loadfile_btn.setText(this.getString(R.string.litterdata_upload_btn_str));
 		ld_loadfile_btn.setOnClickListener(this);
 

@@ -22,7 +22,7 @@ public class LitterUtil {
 	 */
 	@SuppressLint("SimpleDateFormat")
 	public static String getLitterDate() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date d = new Date();
 		String dateNowStr = sdf.format(d);
 		return dateNowStr;

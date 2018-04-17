@@ -7,4 +7,6 @@
 	<dimen name="text_small">20dp</dimen>
 	<dimen name="text_middle">25dp</dimen>
 	<dimen name="text_big">30dp</dimen>
+	<dimen name="text_litter_items">12sp</dimen>
+	<dimen name="text_litter_list_items">10sp</dimen>
 </resources>

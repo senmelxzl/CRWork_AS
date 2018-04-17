@@ -1,17 +1,15 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.crwork.app.bt.ui.MainActivity"
-    tools:ignore="MergeRootFrame" >
-
+    android:gravity="center"
+    android:orientation="vertical">
     <LinearLayout
-        android:id="@+id/developer_btn"
+        android:id="@+id/main_action_llt0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical" >
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_weighed"
@@ -33,9 +31,39 @@
             android:layout_marginRight="15dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/upload_weight_background"
-            android:text="@string/xn_report_str"
             android:textSize="30sp"
+            android:text="@string/xn_report_str"
             android:textStyle="bold" />
     </LinearLayout>
 
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/main_action_llt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_upload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/upload_weight_background"
+            android:text="@string/action_analysis_str"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/upload_weight_background"
+            android:text="@string/settings_title_tip"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>
