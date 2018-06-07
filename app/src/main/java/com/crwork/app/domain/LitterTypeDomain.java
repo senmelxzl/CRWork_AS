@@ -2,54 +2,53 @@ package com.crwork.app.domain;
 
 /**
  * litter type data
- * 
- * @author xiezhenlin
  *
+ * @author xiezhenlin
  */
 public class LitterTypeDomain {
-	private int ID;
-	private int typeID;
-	private String typeName;
-	private int typemark;
-	private Double price;
+    private int ID;
+    private int littertypeID;
+    private String typeName;
+    private int typemark;
+    private Double price;
 
-	public int getID() {
-		return ID;
-	}
+    public int getID() {
+        return ID;
+    }
 
-	public void setID(int iD) {
-		ID = iD;
-	}
+    public void setID(int iD) {
+        ID = iD;
+    }
 
-	public int getTypeID() {
-		return typeID;
-	}
+    public int getLittertypeID() {
+        return littertypeID;
+    }
 
-	public void setTypeID(int typeID) {
-		this.typeID = typeID;
-	}
+    public void setLittertypeID(int littertypeID) {
+        this.littertypeID = littertypeID;
+    }
 
-	public String getTypeName() {
-		return typeName;
-	}
+    public String getTypeName() {
+        return typeName;
+    }
 
-	public void setTypeName(String typeName) {
-		this.typeName = typeName;
-	}
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
 
-	public int getTypemark() {
-		return typemark;
-	}
+    public int getTypemark() {
+        return typemark;
+    }
 
-	public void setTypemark(int typemark) {
-		this.typemark = typemark;
-	}
+    public void setTypemark(int typemark) {
+        this.typemark = typemark;
+    }
 
-	public Double getPrice() {
-		return price;
-	}
+    public Double getPrice() {
+        return price;
+    }
 
-	public void setPrice(Double price) {
-		this.price = price;
-	}
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 }

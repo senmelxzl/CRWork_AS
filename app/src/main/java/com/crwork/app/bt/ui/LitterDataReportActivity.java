@@ -1,24 +1,23 @@
 package com.crwork.app.bt.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import android.app.Activity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.crwork.app.R;
 import com.crwork.app.adapter.LitterDataReportAdapter;
 import com.crwork.app.dao.LitterDao;
 import com.crwork.app.domain.LitterDomain;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Report activity
@@ -52,9 +51,9 @@ public class LitterDataReportActivity extends Activity implements OnClickListene
         userid_fetch = (EditText) findViewById(R.id.userid_fetch);
         litter_data_fetch = (TextView) findViewById(R.id.litter_data_fetch);
         litter_data_fetch_clean = (TextView) findViewById(R.id.litter_data_fetch_clean);
-        litter_data_filter_by_date = findViewById(R.id.litter_data_filter_by_date);
-        litter_data_filter_by_quarter = findViewById(R.id.litter_data_filter_by_quarter);
-        litter_data_filter_by_type = findViewById(R.id.litter_data_filter_by_type);
+        litter_data_filter_by_date = (TextView) findViewById(R.id.litter_data_filter_by_date);
+        litter_data_filter_by_quarter = (TextView) findViewById(R.id.litter_data_filter_by_quarter);
+        litter_data_filter_by_type = (TextView) findViewById(R.id.litter_data_filter_by_type);
         litter_data_filter_by_date.setOnClickListener(this);
         litter_data_filter_by_quarter.setOnClickListener(this);
         litter_data_filter_by_type.setOnClickListener(this);

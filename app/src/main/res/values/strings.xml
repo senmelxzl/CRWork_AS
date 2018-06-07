@@ -133,5 +133,16 @@
     <string name="litter_data_filter_by_date_str">日期</string>
     <string name="litter_data_filter_by_quarter_str">季度</string>
     <string name="litter_data_filter_by_type_str">类型</string>
-
+    <string name="citys_management_str">地域管理</string>
+    <string name="users_management_str">用户开卡</string>
+    <string name="types_management_str">类型管理</string>
+    <string name="about_us_str">关于我们</string>
+    <string name="citys_status_str">分类状态：</string>
+    <string name="citys_parent_name_zh_tip">所属区域：</string>
+    <string name="citys_add_tip">新增</string>
+    <string name="citys_add_title_tip">区域名称：</string>
+    <string name="citys_status_tip">开启</string>
+    <string name="user_add_bt_str">开卡</string>
+    <string name="user_modify_bt_str">修改</string>
+    <string name="user_delete_bt_str">删除</string>
 </resources>

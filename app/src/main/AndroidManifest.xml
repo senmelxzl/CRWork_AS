@@ -16,10 +16,16 @@
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <uses-feature
         android:name="android.hardware.nfc"
         android:required="true" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -27,7 +33,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.crwork.app.bt.ui.MainActivity"
+            android:name=".bt.ui.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,18 +41,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.crwork.app.bt.ui.LitterWeighActivity"></activity>
         <activity
-            android:name="com.crwork.app.bt.ui.LitterDataReportActivity"
-            android:windowSoftInputMode="stateHidden|stateAlwaysHidden"></activity>
-        <activity android:name="com.crwork.app.bt.ui.SettingsActivity"></activity>
-        <activity android:name="com.crwork.app.bt.ui.LitterDataUploadActivity"></activity>
-        <activity android:name="com.crwork.app.bt.ui.LitterDataFileExplorerActivity"></activity>
+            android:name=".bt.ui.LitterWeighActivity"
+            android:label="@string/xn_weighed_str" />
+        <activity
+            android:name=".bt.ui.LitterDataReportActivity"
+            android:label="@string/xn_report_str"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
+        <activity
+            android:name=".bt.ui.SettingsActivity"
+            android:label="@string/settings_title_tip" />
+        <activity
+            android:name=".bt.ui.LitterDataUploadActivity"
+            android:label="@string/action_analysis_str" />
+        <activity android:name=".bt.ui.LitterDataFileExplorerActivity" />
         <!-- debug part start -->
-        <activity android:name="com.crwork.app.debug.ClientActivity"></activity>
-        <activity android:name="com.crwork.app.debug.ServerActivity"></activity>
+        <activity android:name=".debug.ClientActivity" />
+        <activity android:name=".debug.ServerActivity" />
         <activity
-            android:name="com.crwork.app.debug.NFCActivity"
+            android:name=".debug.NFCActivity"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
@@ -67,6 +80,15 @@
             </intent-filter>
         </activity>
         <!-- debug part end -->
+        <activity
+            android:name=".bt.ui.CitysManagement"
+            android:label="@string/citys_management_str"></activity>
+        <activity
+            android:name=".bt.ui.LitterTypeManagement"
+            android:label="@string/types_management_str"></activity>
+        <activity
+            android:name=".bt.ui.UsersManagement"
+            android:label="@string/users_management_str"></activity>
     </application>
 
 </manifest>

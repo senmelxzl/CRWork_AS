@@ -2,54 +2,53 @@ package com.crwork.app.domain;
 
 /**
  * LitterDomain
- * 
- * @author xiezhenlin
  *
+ * @author xiezhenlin
  */
 public class LitterDomain {
-	private int ID;
-	private int userID;
-	private int littertypeID;
-	private Double weight;
-	private String litterdate;
+    private int ID;
+    private int userID;
+    private int littertypeID;
+    private Double weight;
+    private String litterdate;
 
-	public int getID() {
-		return ID;
-	}
+    public int getID() {
+        return ID;
+    }
 
-	public void setID(int iD) {
-		ID = iD;
-	}
+    public void setID(int iD) {
+        ID = iD;
+    }
 
-	public int getUserID() {
-		return userID;
-	}
+    public int getUserID() {
+        return userID;
+    }
 
-	public void setUserID(int userID) {
-		this.userID = userID;
-	}
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
 
-	public int getLittertypeID() {
-		return littertypeID;
-	}
+    public int getLittertypeID() {
+        return littertypeID;
+    }
 
-	public void setLittertypeID(int littertypeID) {
-		this.littertypeID = littertypeID;
-	}
+    public void setLittertypeID(int littertypeID) {
+        this.littertypeID = littertypeID;
+    }
 
-	public Double getWeight() {
-		return weight;
-	}
+    public Double getWeight() {
+        return weight;
+    }
 
-	public void setWeight(Double weight) {
-		this.weight = weight;
-	}
+    public void setWeight(Double weight) {
+        this.weight = weight;
+    }
 
-	public String getLitterdate() {
-		return litterdate;
-	}
+    public String getLitterdate() {
+        return litterdate;
+    }
 
-	public void setLitterdate(String litterdate) {
-		this.litterdate = litterdate;
-	}
+    public void setLitterdate(String litterdate) {
+        this.litterdate = litterdate;
+    }
 }

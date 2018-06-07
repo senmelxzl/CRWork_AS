@@ -2,16 +2,72 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_margin="3dp"
+    android:background="@drawable/litter_data_list_lyt_border"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/settings_title"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:gravity="center_horizontal"
-        android:text="@string/settings_title_tip"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/citys_management"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/citys_management_str"
+            android:textSize="@dimen/text_big"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/bg_default"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:id="@+id/users_management"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/users_management_str"
+            android:textSize="@dimen/text_big"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/bg_default"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:id="@+id/types_management"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/types_management_str"
+            android:textSize="@dimen/text_big"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/bg_default"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:id="@+id/about_us"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/about_us_str"
+            android:textSize="@dimen/text_big"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/bg_default"
+            android:layout_height="1dp" />
+    </LinearLayout>
 
 </LinearLayout>
