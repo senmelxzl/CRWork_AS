@@ -45,7 +45,7 @@ public class CRWorkJDBC {
             + "(ID int auto_increment primary key not null,userId int not null,littertypeID int not null,weight double(16,2) not null,tPrice double(16,2) not null,litterdate date not null)";
 
     public final static String LITTER_TYPE_TABLE_SQL = "create table " + LITTER_TYPE_TABLE
-            + "(ID int auto_increment primary key not null, int not null,typeName varchar(40) not null,typemark int not null,price double(16,2) not null) DEFAULT CHARSET=utf8";
+            + "(ID int auto_increment primary key not null,littertypeID int not null,typeName varchar(20) not null,typemark int not null,price double(16,2) not null)";
 
     public final static String CITY_TABLE_SQL = "create table " + CITY_TABLE
             + "(id int auto_increment primary key not null,parent_id int default null,city_name_zh varchar(20),city_name_en varchar(20),city_level int(11) not null,city_code char(12) not null,city_status_cr int(11) not null)";

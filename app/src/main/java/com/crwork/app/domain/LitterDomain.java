@@ -7,9 +7,10 @@ package com.crwork.app.domain;
  */
 public class LitterDomain {
     private int ID;
-    private int userID;
+    private String userId;
     private int littertypeID;
     private Double weight;
+    private Double tPrice;
     private String litterdate;
 
     public int getID() {
@@ -20,12 +21,12 @@ public class LitterDomain {
         ID = iD;
     }
 
-    public int getUserID() {
-        return userID;
+    public String getUserID() {
+        return userId;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUserID(String userId) {
+        this.userId = userId;
     }
 
     public int getLittertypeID() {
@@ -42,6 +43,14 @@ public class LitterDomain {
 
     public void setWeight(Double weight) {
         this.weight = weight;
+    }
+
+    public Double gettPrice() {
+        return tPrice;
+    }
+
+    public void settPrice(Double tPrice) {
+        this.tPrice = tPrice;
     }
 
     public String getLitterdate() {

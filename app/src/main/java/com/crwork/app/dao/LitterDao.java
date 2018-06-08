@@ -1,19 +1,19 @@
 package com.crwork.app.dao;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.util.ArrayList;
-
-import com.crwork.app.database.LitterWeightDatabaseHelper;
-import com.crwork.app.domain.LitterDomain;
-import com.crwork.app.util.LitterUtil;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+
+import com.crwork.app.database.LitterWeightDatabaseHelper;
+import com.crwork.app.domain.LitterDomain;
+import com.crwork.app.util.LitterUtil;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.ArrayList;
 
 /**
  * @author xiezhenlin
@@ -72,7 +72,7 @@ public class LitterDao {
         Log.i(TAG, "----query----2" + String.valueOf(cursor));
         while (cursor.moveToNext()) {
             LitterDomain mLitterDomain = new LitterDomain();
-            mLitterDomain.setUserID(cursor.getInt(cursor.getColumnIndex("userID")));
+            mLitterDomain.setUserID(cursor.getString(cursor.getColumnIndex("userID")));
             mLitterDomain.setLittertypeID(cursor.getInt(cursor.getColumnIndex("littertypeID")));
             mLitterDomain.setWeight(cursor.getDouble(cursor.getColumnIndex("weight")));
             mLitterDomain.setLitterdate(cursor.getString(cursor.getColumnIndex("litterdate")));
@@ -106,7 +106,7 @@ public class LitterDao {
                 Log.i(TAG, "----read data by line----" + temp);
                 LitterDomain mLitterDomain = new LitterDomain();
                 String[] list_temp = temp.split(" ");
-                mLitterDomain.setUserID(Integer.parseInt(list_temp[0]));
+                mLitterDomain.setUserID(String.valueOf(list_temp[0]));
                 mLitterDomain.setLittertypeID(Integer.parseInt(list_temp[1]));
                 mLitterDomain.setWeight(Double.parseDouble(list_temp[2]));
                 mLitterDomain.setLitterdate(LitterUtil.getLitterDate());
