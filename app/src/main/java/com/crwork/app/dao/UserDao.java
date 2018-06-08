@@ -152,4 +152,32 @@ public class UserDao {
         }
         return false;
     }
+
+    /**
+     * get userId by Name
+     *
+     * @param userName
+     * @return
+     */
+    public int getUserIdByUserName(String userName) {
+        // TODO Auto-generated method stub
+        int UserId = 0;
+        mConnection = mCRWorkJDBC.getCRWorkConn();
+        try {
+            String sql = "select userId from " + CRWorkJDBC.USER_TABLE + " where userName=?";
+            PreparedStatement psmt = mConnection.prepareStatement(sql);
+            psmt.setString(1, userName);
+            ResultSet rs = psmt.executeQuery();
+            while (rs.next()) {
+                UserId = rs.getInt(1);
+            }
+            System.out.println("getUserIdByUserName()  success!" + UserId + "\n");
+            mConnection.close();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        System.out.println("getUserIdByUserName() completed!" + UserId + "\n");
+        return UserId;
+    }
 }

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
  * @author xiezhenlin
  */
 public class LitterDataUploadActivity extends Activity implements OnClickListener {
+    private final static String TAG = "LitterDataUploadActivity";
     private Context mContext;
     private final static int XN_LD_SELECTED = 1;
 
@@ -56,7 +58,6 @@ public class LitterDataUploadActivity extends Activity implements OnClickListene
     private void LoadSet() {
         // TODO Auto-generated method stub
         mContext = this;
-        mLitterDao = new LitterDao(mContext);
     }
 
     private void LoadView() {
@@ -78,8 +79,10 @@ public class LitterDataUploadActivity extends Activity implements OnClickListene
         // TODO Auto-generated method stub
         if (dataFile != null) {
             ld_file_name.setText(dataFile.getName());
-            mLitterDomainList = mLitterDao.readTXT(dataFile);
+            mLitterDao = new LitterDao();
+            mLitterDomainList = mLitterDao.readDatafromFilePath(dataFile);
             if (mLitterDomainList != null && mLitterDomainList.size() != 0) {
+                Log.i(TAG, String.valueOf(mLitterDomainList.size()));
                 mLitterReportAdapter = new LitterDataReportAdapter(mLitterDomainList, this);
                 dataShowView(STATE_HAS_DATA);
                 listView.setAdapter(mLitterReportAdapter);

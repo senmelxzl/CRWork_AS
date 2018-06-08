@@ -62,7 +62,7 @@ public class LitterWeighActivity extends Activity implements OnClickListener {
     private Double money_earning = 0.00;
     private int litter_type_ID = LitterUtil.LITTER_TYPE_NO_R;
     private boolean weigh_ready = false;
-    private int userID = 19000102;
+    private String userId = "19880109";
     private boolean userdetected = false;
     private DecimalFormat df = new DecimalFormat("######0.00");
 
@@ -311,11 +311,11 @@ public class LitterWeighActivity extends Activity implements OnClickListener {
     private void UploadWeight() {
         // TODO Auto-generated method stub
         LitterDomain mLitterDomain = new LitterDomain();
-        mLitterDomain.setUserID(userID);
+        mLitterDomain.setUserId(userId);
         mLitterDomain.setLittertypeID(litter_type_ID);
         mLitterDomain.setWeight(Double.valueOf(weigh_data).doubleValue());
         mLitterDomain.setLitterdate(LitterUtil.getLitterDate());
-        LitterDao mLitterDao = new LitterDao(this);
+        LitterDao mLitterDao = new LitterDao();
         uploaded_success = mLitterDao.insertLitterData(mLitterDomain);
         if (uploaded_success) {
             uploaded_success = false;
@@ -400,9 +400,9 @@ public class LitterWeighActivity extends Activity implements OnClickListener {
      */
     private void detectUserID() {
         // TODO Auto-generated method stub
-        if (userID > 0) {
+        if (userId != null && !userId.equals("")) {
             userdetected = true;
-            tv_user_detect_id.setText(String.valueOf(userID));
+            tv_user_detect_id.setText(userId);
             tv_user_detect_name.setText(mContext.getResources().getString(R.string.tv_user_name_test));
         }
     }

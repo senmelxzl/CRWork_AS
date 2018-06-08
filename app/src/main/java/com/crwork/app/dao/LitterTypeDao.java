@@ -124,4 +124,23 @@ public class LitterTypeDao {
         }
         return false;
     }
+    public Double getTPriceByLitterTypeId(int litterTypeId) {
+        Double tPrice = 0.00;
+        mConnection = mCRWorkJDBC.getCRWorkConn();
+        try {
+            String sql = "select price from " + CRWorkJDBC.LITTER_TYPE_TABLE + " where littertypeID=?";
+            PreparedStatement psmt = mConnection.prepareStatement(sql);
+            psmt.setInt(1, litterTypeId);
+            ResultSet rs = psmt.executeQuery();
+            while (rs.next()) {
+                tPrice = rs.getDouble(1);
+            }
+            System.out.println("getTPriceByLitterTypeId()  success!" + tPrice + "\n");
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        System.out.println("getTPriceByLitterTypeId() completed!" + tPrice + "\n");
+        return tPrice;
+    }
 }

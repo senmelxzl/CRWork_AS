@@ -1,5 +1,7 @@
 package com.crwork.app.domain;
 
+import java.sql.Date;
+
 /**
  * LitterDomain
  *
@@ -11,7 +13,7 @@ public class LitterDomain {
     private int littertypeID;
     private Double weight;
     private Double tPrice;
-    private String litterdate;
+    private Date litterdate;
 
     public int getID() {
         return ID;
@@ -21,11 +23,11 @@ public class LitterDomain {
         ID = iD;
     }
 
-    public String getUserID() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserID(String userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -53,11 +55,11 @@ public class LitterDomain {
         this.tPrice = tPrice;
     }
 
-    public String getLitterdate() {
+    public Date getLitterdate() {
         return litterdate;
     }
 
-    public void setLitterdate(String litterdate) {
+    public void setLitterdate(Date litterdate) {
         this.litterdate = litterdate;
     }
 }

@@ -58,14 +58,14 @@ public class LitterDataReportAdapter extends BaseAdapter {
         } else {
             holder = (Holder) convertView.getTag();
         }
-        holder.userID.setText(String.valueOf(mLitterDomainList.get(position).getUserID()));
+        holder.userID.setText(String.valueOf(mLitterDomainList.get(position).getUserId()));
         holder.userName.setText(mContext.getResources().getString(R.string.tv_user_name_test));
         holder.littertypeID.setText(mLitterDomainList.get(position).getLittertypeID() == 0
                 ? mContext.getResources().getString(R.string.litter_union_type)
                 : mContext.getResources().getString(R.string.litter_recyclable_type));
         holder.weight.setText(String.valueOf(mLitterDomainList.get(position).getWeight())
                 + mContext.getResources().getString(R.string.tv_weight_count_tip));
-        holder.litterdate.setText(mLitterDomainList.get(position).getLitterdate());
+        holder.litterdate.setText(String.valueOf(mLitterDomainList.get(position).getLitterdate()));
         return convertView;
     }
 

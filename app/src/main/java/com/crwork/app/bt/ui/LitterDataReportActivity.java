@@ -32,7 +32,7 @@ public class LitterDataReportActivity extends Activity implements OnClickListene
     private LitterDataReportAdapter mLitterReportAdapter;
     private LitterDao mLitterDao;
     ArrayList<LitterDomain> mLitterDomainList;
-    private int userID_fetch = 0;
+    private String userID_fetch = "0";
     List<Map<String, Object>> dataList;
     private TextView litter_data_filter_by_date, litter_data_filter_by_quarter, litter_data_filter_by_type;
 
@@ -41,7 +41,7 @@ public class LitterDataReportActivity extends Activity implements OnClickListene
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.litter_data_report);
-        mLitterDao = new LitterDao(this);
+        mLitterDao = new LitterDao();
         initview();
     }
 
@@ -58,11 +58,11 @@ public class LitterDataReportActivity extends Activity implements OnClickListene
         litter_data_filter_by_quarter.setOnClickListener(this);
         litter_data_filter_by_type.setOnClickListener(this);
         if (!userid_fetch.getText().toString().equals("")) {
-            userID_fetch = Integer.parseInt(userid_fetch.getText().toString());
+            userID_fetch = userid_fetch.getText().toString();
         }
         litter_data_fetch.setOnClickListener(this);
         litter_data_fetch_clean.setOnClickListener(this);
-        mLitterDomainList = mLitterDao.queryLitterData(userID_fetch);
+        mLitterDomainList = mLitterDao.queryLitterDataByUserID(userID_fetch);
         int litterlistSize = mLitterDomainList.size();
         if (litterlistSize == 0) {
             Toast.makeText(this, getResources().getString(R.string.litter_is_empty), Toast.LENGTH_LONG).show();
@@ -77,9 +77,9 @@ public class LitterDataReportActivity extends Activity implements OnClickListene
         // TODO Auto-generated method stub
         super.onResume();
         if (!userid_fetch.getText().toString().equals("")) {
-            userID_fetch = Integer.parseInt(userid_fetch.getText().toString());
+            userID_fetch = userid_fetch.getText().toString();
         }
-        mLitterDomainList = mLitterDao.queryLitterData(userID_fetch);
+        mLitterDomainList = mLitterDao.queryLitterDataByUserID(userID_fetch);
         if (mLitterDomainList.size() != 0) {
             mLitterReportAdapter.refresh(mLitterDomainList);
         }
@@ -94,12 +94,12 @@ public class LitterDataReportActivity extends Activity implements OnClickListene
                     Toast.makeText(this, getResources().getString(R.string.userid_query_hint), Toast.LENGTH_LONG).show();
                     break;
                 }
-                mLitterDomainList = mLitterDao.queryLitterData(Integer.parseInt(userid_fetch.getText().toString()));
+                mLitterDomainList = mLitterDao.queryLitterDataByUserID(userid_fetch.getText().toString());
 
                 Toast.makeText(this, "data size:" + String.valueOf(mLitterDomainList.size()), Toast.LENGTH_LONG).show();
                 for (int i = 0; i < mLitterDomainList.size(); i++) {
                     Log.i(TAG,
-                            "detail:" + "userID:" + String.valueOf(mLitterDomainList.get(i).getUserID()) + " LittertypeID:"
+                            "detail:" + "userID:" + String.valueOf(mLitterDomainList.get(i).getUserId()) + " LittertypeID:"
                                     + String.valueOf(mLitterDomainList.get(i).getLittertypeID()) + " Weight:"
                                     + String.valueOf(mLitterDomainList.get(i).getWeight()) + " Litterdate:"
                                     + String.valueOf(mLitterDomainList.get(i).getLitterdate()));
@@ -108,8 +108,8 @@ public class LitterDataReportActivity extends Activity implements OnClickListene
                 break;
             case R.id.litter_data_fetch_clean:
                 userid_fetch.setText("");
-                userID_fetch = 0;
-                mLitterDomainList = mLitterDao.queryLitterData(userID_fetch);
+                userID_fetch = "0";
+                mLitterDomainList = mLitterDao.queryLitterDataByUserID(userID_fetch);
                 mLitterReportAdapter.refresh(mLitterDomainList);
                 break;
             case R.id.litter_data_filter_by_date:
