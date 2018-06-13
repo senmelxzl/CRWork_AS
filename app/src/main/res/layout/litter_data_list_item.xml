@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:orientation="horizontal" >
+    android:layout_margin="3dp"
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/userID"
@@ -11,17 +11,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_litter_list_items" />
-
-    <TextView
-        android:id="@+id/userName"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_litter_list_items" />
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/littertypeID"
@@ -29,8 +19,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_litter_list_items" />
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/weight"
@@ -38,8 +27,15 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_litter_list_items" />
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/littertprice"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/litterdate"
@@ -47,7 +43,6 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_litter_list_items" />
+        android:textColor="@color/black" />
 
 </LinearLayout>

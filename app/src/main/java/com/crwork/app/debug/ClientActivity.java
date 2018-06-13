@@ -20,12 +20,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crwork.app.R;
-import com.crwork.app.bt.util.BTChatUtil;
+import com.crwork.app.util.BTChatUtil;
 
 import java.util.Set;
 
 /**
- * client connection debug
+ * activity_client connection debug
  *
  * @author xiezhenlin
  */
@@ -99,7 +99,7 @@ public class ClientActivity extends Activity implements OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.client);
+        setContentView(R.layout.activity_client);
         mContext = this;
         initView();
         initBluetooth();

@@ -299,4 +299,5 @@
 	<color name="text_alarm">#FF506650</color>
 	<color name="text_tip">#FFA0A0A0</color>
 	<color name="text_button">#FF3F3F3F</color>
+    <color name="disable_button">#FFD0EFC6</color>
 </resources>

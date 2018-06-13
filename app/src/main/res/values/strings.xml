@@ -122,6 +122,7 @@
     <string name="report_littertypeID_title_str">Litter Type</string>
     <string name="report_weight_title_str">Weight</string>
     <string name="report_litterdate_title_str">Date</string>
+    <string name="littertprice_title_str">价格</string>
     <string name="litterdata_upload_btn_str">Select</string>
     <string name="litterdata_upload_title">Upload</string>
     <string name="ld_upload_path_title_str">Data file:</string>
@@ -134,7 +135,7 @@
     <string name="litter_data_filter_by_quarter_str">季度</string>
     <string name="litter_data_filter_by_type_str">类型</string>
     <string name="citys_management_str">地域管理</string>
-    <string name="users_management_str">用户开卡</string>
+    <string name="users_management_str">用户管理</string>
     <string name="types_management_str">类型管理</string>
     <string name="about_us_str">关于我们</string>
     <string name="citys_status_str">分类状态：</string>
@@ -145,4 +146,20 @@
     <string name="user_add_bt_str">开卡</string>
     <string name="user_modify_bt_str">修改</string>
     <string name="user_delete_bt_str">删除</string>
+    <string name="ld_loadfile_btn_str">选择</string>
+    <string name="ld_upload_btn_str">上传</string>
+    <string name="join_title_tip">开卡</string>
+    <string name="export_report_title_tip">统计</string>
+
+    <string-array name="usertype_item">
+        <item>超级管理员</item>
+        <item>管理员</item>
+        <item>普通用户</item>
+    </string-array>
+    <integer-array name="usertype_item_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </integer-array>
+    <string name="title_activity_join_cr">JoinCRActivity</string>
 </resources>

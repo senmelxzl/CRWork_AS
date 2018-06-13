@@ -16,16 +16,6 @@
         android:textSize="@dimen/text_litter_items" />
 
     <TextView
-        android:id="@+id/userName_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="@string/report_userName_title_str"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_litter_items" />
-
-    <TextView
         android:id="@+id/littertypeID_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,6 +32,16 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="@string/report_weight_title_str"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_litter_items" />
+
+    <TextView
+        android:id="@+id/littertprice_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/littertprice_title_str"
         android:textColor="@color/black"
         android:textSize="@dimen/text_litter_items" />
 
