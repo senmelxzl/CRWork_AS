@@ -84,7 +84,7 @@ public class CitysManagement extends Activity implements AdapterView.OnItemClick
     private void refreshListItems(String mparentId) {
         parentId = mparentId;
         GetCitysTask mGetCitysTask = new GetCitysTask();
-        mGetCitysTask.execute(mparentId);
+        mGetCitysTask.execute(NetUtil.ACTION_URL_HEAD + NetUtil.ACTION_GETCITYS, mparentId, "0", "getcitylist");
     }
 
     @Override
@@ -168,7 +168,11 @@ public class CitysManagement extends Activity implements AdapterView.OnItemClick
 
         @Override
         protected String doInBackground(String... params) {
-            return new NetUtil().GetCitysList(params[0], "0", "getcitylist");
+            Map<String, String> map = new HashMap<>();
+            map.put("parent_id", params[1]);
+            map.put("id", params[2]);
+            map.put("citys_action", params[3]);
+            return new NetUtil().GetDataByPOST(params[0], map);
         }
 
         @Override

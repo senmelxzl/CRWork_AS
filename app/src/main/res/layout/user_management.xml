@@ -13,6 +13,14 @@
         android:layout_height="1dp"
         android:background="@color/bg_default" />
 
+    <TextView
+        android:id="@+id/iscr_percent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:textStyle="bold" />
+
     <include layout="@layout/users_title_item" />
 
     <ListView

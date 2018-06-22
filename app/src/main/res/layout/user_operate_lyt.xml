@@ -35,6 +35,13 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="姓名：" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="权限：" />
         </LinearLayout>
 
         <LinearLayout
@@ -63,6 +70,30 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/usertype_sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center" />
+
+                <CheckBox
+                    android:id="@+id/is_cr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="分类" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -84,6 +115,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:enabled="false"
                 android:gravity="center"
                 android:text="@string/user_modify_bt_str" />
 
@@ -92,38 +124,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:enabled="false"
                 android:gravity="center"
                 android:text="@string/user_delete_bt_str" />
 
-
+            <Button
+                android:id="@+id/user_reset_bt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="重置" />
         </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:text="权限：" />
-
-        <Spinner
-            android:id="@+id/usertype"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"></Spinner>
-
-        <CheckBox
-            android:id="@+id/is_cr"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:text="分类" />
     </LinearLayout>
 </LinearLayout>

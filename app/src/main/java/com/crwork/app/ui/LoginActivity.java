@@ -18,6 +18,9 @@ import com.crwork.app.net.NetUtil;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LoginActivity extends Activity implements View.OnClickListener {
     private final static String TAG = "LoginActivity";
     private Context mContext;
@@ -49,6 +52,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         login_btn = findViewById(R.id.login_btn);
         login_btn.setOnClickListener(this);
+        UserLoginAsyncTask mUserLoginAsyncTask = new UserLoginAsyncTask();
+        mUserLoginAsyncTask.execute(NetUtil.ACTION_URL_HEAD + NetUtil.ACTION_USER_LOGIN, et_userId_login.getText().toString(), et_psw_login.getText().toString());
     }
 
     @Override
@@ -62,29 +67,36 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     break;
                 }
                 UserLoginAsyncTask mUserLoginAsyncTask = new UserLoginAsyncTask();
-                mUserLoginAsyncTask.execute(userId, psw);
+                mUserLoginAsyncTask.execute(NetUtil.ACTION_URL_HEAD + NetUtil.ACTION_USER_LOGIN, userId, psw);
                 break;
         }
     }
 
+    /**
+     * 登录 AsyncTask
+     */
     private class UserLoginAsyncTask extends AsyncTask<String, Object, String> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            tv_login_result.setText("...正在登录...");
+            tv_login_result.setText("正在登录...");
         }
 
         @Override
         protected String doInBackground(String... params) {
-            return new NetUtil().UserLogin(params[0], params[1]);
+            Map<String, String> map = new HashMap<>();
+            map.put("userId", params[1]);
+            map.put("psw", params[2]);
+            return new NetUtil().GetDataByPOST(params[0], map);
         }
 
         @Override
         protected void onPostExecute(String result_msg) {
             super.onPostExecute(result_msg);
             System.out.print(TAG + result_msg);
+            String result_tip = "";
             if (!result_msg.equals("fail")) {
-                tv_login_result.setText("...登录成功...");
+                result_tip = "登录成功";
                 Gson mGson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
                 UserDomain mUserDomain = mGson.fromJson(result_msg, UserDomain.class);
                 SharedPreferences sp = getSharedPreferences("user_login_data", Context.MODE_PRIVATE);
@@ -99,8 +111,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 startActivity(mHomeActivity);
                 finish();
             } else {
-                tv_login_result.setText("...登录失败...");
+                result_tip = "登录失败";
             }
+            Toast.makeText(mContext, result_tip, Toast.LENGTH_SHORT).show();
         }
     }
 }

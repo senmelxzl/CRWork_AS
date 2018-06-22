@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.crwork.app.R;
 import com.crwork.app.net.NetUtil;
@@ -91,20 +92,20 @@ public class UploadDataFileActivity extends Activity implements OnClickListener 
         if (resultCode == RESULT_OK) {
             filePath = data.getStringExtra("apk_path");
             ld_file_name.setText(new File(filePath).getName());
-            SourceFileCheck(filePath);
+            ParseDataSourceFileAsyncTask mParseDataSourceFileAsyncTask = new ParseDataSourceFileAsyncTask();
+            mParseDataSourceFileAsyncTask.execute(filePath);
         }
     }
 
     /**
      * 检查上传文件的是否符合要求
      *
-     * @param filePath
+     * @param isOk
      */
-    private void SourceFileCheck(String filePath) {
-        FileUtil mFileUtil = new FileUtil();
+    private void SourceFileCheck(Boolean isOk, FileUtil mFileUtil) {
         ld_loadfile_btn.setEnabled(false);
         ld_loadfile_btn.setTextColor(0xFFD0EFC6);
-        if (mFileUtil.isFileValid(filePath)) {
+        if (isOk) {
             ld_loadfile_btn.setEnabled(true);
             ld_loadfile_btn.setTextColor(0xFF000000);
             ld_upload_btn.setEnabled(true);
@@ -126,6 +127,13 @@ public class UploadDataFileActivity extends Activity implements OnClickListener 
      * 上传数据源文件
      */
     private class UploadDataSourceFileAsyncTask extends AsyncTask<String, Object, String> {
+        NetUtil mNetUtil;
+
+        public UploadDataSourceFileAsyncTask() {
+            super();
+            mNetUtil = new NetUtil();
+        }
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -143,7 +151,6 @@ public class UploadDataFileActivity extends Activity implements OnClickListener 
 
         @Override
         protected String doInBackground(String... params) {
-            NetUtil mNetUtil =new NetUtil();
             return mNetUtil.UploadSourceFile(params[0]);
         }
 
@@ -157,6 +164,7 @@ public class UploadDataFileActivity extends Activity implements OnClickListener 
                 total_weight_ur.setText("0.00");
                 total_weight_k.setText("0.00");
                 ld_file_name.setText("");
+                Toast.makeText(mContext,"~~~~~~~OK~~~~~~~",Toast.LENGTH_LONG).show();
                 ld_dataload_tip.setText("数据上传成功");
             } else {
                 ld_upload_btn.setEnabled(true);
@@ -166,5 +174,35 @@ public class UploadDataFileActivity extends Activity implements OnClickListener 
             ld_loadfile_btn.setEnabled(true);
             ld_loadfile_btn.setTextColor(0xFF000000);
         }
+    }
+
+    /**
+     * 数据文件解析
+     */
+    private class ParseDataSourceFileAsyncTask extends AsyncTask<String, Object, Boolean> {
+        FileUtil mFileUtil;
+
+        public ParseDataSourceFileAsyncTask() {
+            super();
+            mFileUtil = new FileUtil();
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            ld_dataload_tip.setText("数据解析中...");
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+            SourceFileCheck(aBoolean, mFileUtil);
+        }
+
+        @Override
+        protected Boolean doInBackground(String... strings) {
+            return mFileUtil.isFileValid(strings[0]);
+        }
+
     }
 }

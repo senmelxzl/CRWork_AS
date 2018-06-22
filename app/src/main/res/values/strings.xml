@@ -143,7 +143,7 @@
     <string name="citys_add_tip">新增</string>
     <string name="citys_add_title_tip">区域名称：</string>
     <string name="citys_status_tip">开启</string>
-    <string name="user_add_bt_str">开卡</string>
+    <string name="user_add_bt_str">添加</string>
     <string name="user_modify_bt_str">修改</string>
     <string name="user_delete_bt_str">删除</string>
     <string name="ld_loadfile_btn_str">选择</string>
