@@ -29,15 +29,15 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.citys_management:
-                Intent mCitysManagement = new Intent(this, CitysManagement.class);
+                Intent mCitysManagement = new Intent(this, CitysActivity.class);
                 startActivity(mCitysManagement);
                 break;
             case R.id.users_management:
-                Intent mUsersManagement = new Intent(this, UsersManagementActivity.class);
+                Intent mUsersManagement = new Intent(this, UsersActivity.class);
                 startActivity(mUsersManagement);
                 break;
             case R.id.types_management:
-                Intent mLitterTypeManagement = new Intent(this, LitterTypeManagement.class);
+                Intent mLitterTypeManagement = new Intent(this, LitterTypeActivity.class);
                 startActivity(mLitterTypeManagement);
                 break;
         }

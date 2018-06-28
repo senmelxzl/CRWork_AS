@@ -52,20 +52,16 @@ public class CitysAdapter extends BaseAdapter {
             LayoutInflater inflater = LayoutInflater.from(mContext);
             convertView = inflater.inflate(R.layout.citys_data_list_item, null);
             holder = new Holder();
-            holder.citys_id = (TextView) convertView.findViewById(R.id.citys_id);
-            holder.citys_parents_id = (TextView) convertView.findViewById(R.id.citys_parents_id);
             holder.citys_name_zh = (TextView) convertView.findViewById(R.id.citys_name_zh);
             convertView.setTag(holder);
         } else {
             holder = (Holder) convertView.getTag();
         }
-        holder.citys_id.setText(String.valueOf(mCitysList.get(position).getId()));
-        holder.citys_parents_id.setText(String.valueOf(mCitysList.get(position).getParent_id()));
         holder.citys_name_zh.setText(String.valueOf(mCitysList.get(position).getCity_name_zh()));
         return convertView;
     }
 
     class Holder {
-        private TextView citys_id, citys_parents_id, citys_name_zh;
+        private TextView citys_name_zh;
     }
 }

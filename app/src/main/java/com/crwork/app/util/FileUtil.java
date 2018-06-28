@@ -14,6 +14,9 @@ public class FileUtil {
     private Double total_weight_ur = 0.00;
     private Double total_weight_r = 0.00;
     private Double total_weight_k = 0.00;
+    private Double total_price_ur = 0.00;
+    private Double total_price_r = 0.00;
+    private Double total_price_k = 0.00;
     private int total_count = 0;
 
     @Override

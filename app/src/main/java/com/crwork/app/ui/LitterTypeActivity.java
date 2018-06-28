@@ -24,8 +24,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LitterTypeManagement extends Activity implements View.OnClickListener, AdapterView.OnItemClickListener {
-    private final static String TAG = "LitterTypeManagement";
+public class LitterTypeActivity extends Activity implements View.OnClickListener, AdapterView.OnItemClickListener {
+    private final static String TAG = "LitterTypeActivity";
 
     private int littertypeID = 0;
     private int typemark;
@@ -45,7 +45,7 @@ public class LitterTypeManagement extends Activity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_littertype_management);
+        setContentView(R.layout.activity_littertype);
         mContext = this;
         initView();
         GetLitterTypeListTask mGetLitterTypeListTask = new GetLitterTypeListTask();

@@ -6,7 +6,7 @@
     android:background="@drawable/litter_data_list_lyt_border"
     android:orientation="vertical">
 
-    <include layout="@layout/user_operate_lyt"></include>
+    <include layout="@layout/activity_users_operate_lyt"></include>
 
     <View
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
         android:gravity="center"
         android:textStyle="bold" />
 
-    <include layout="@layout/users_title_item" />
+    <include layout="@layout/activity_users_title_item" />
 
     <ListView
         android:id="@+id/users_list_lv"

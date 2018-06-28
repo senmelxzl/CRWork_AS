@@ -113,7 +113,7 @@ public class HomeActivity extends Activity implements OnClickListener {
                 startActivity(nfc);
                 break;
             case R.id.action_analysis:// analysis litter data
-                Intent analysis = new Intent(this, UploadDataFileActivity.class);
+                Intent analysis = new Intent(this, LitterUploadActivity.class);
                 startActivity(analysis);
                 break;
             default:
@@ -170,11 +170,11 @@ public class HomeActivity extends Activity implements OnClickListener {
                 startActivity(client);
                 break;
             case R.id.btn_report:
-                Intent report = new Intent(this, ExportReportActivity.class);
+                Intent report = new Intent(this, LitterReportActivity.class);
                 startActivity(report);
                 break;
             case R.id.btn_upload:
-                Intent analysis = new Intent(this, UploadDataFileActivity.class);
+                Intent analysis = new Intent(this, LitterUploadActivity.class);
                 startActivity(analysis);
                 break;
             case R.id.btn_join:

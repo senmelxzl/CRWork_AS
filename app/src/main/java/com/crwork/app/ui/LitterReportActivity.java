@@ -34,8 +34,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ExportReportActivity extends Activity implements View.OnClickListener {
-    private final static String TAG = "ExportReportActivity";
+public class LitterReportActivity extends Activity implements View.OnClickListener {
+    private final static String TAG = "LitterReportActivity";
     private Context mContext;
     String data_search = "";
     private String data_search_start;
@@ -45,7 +45,6 @@ public class ExportReportActivity extends Activity implements View.OnClickListen
 
     private Button explore_submit, export_submit, reset_submit;
     private TextView start_date_values, end_date_values;
-    private TextView export_excelreport;
     private Spinner mSpinnerCitys;
     private EditText ld_username_et;
 
@@ -60,7 +59,7 @@ public class ExportReportActivity extends Activity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_export_report);
+        setContentView(R.layout.activity_litter_report);
         mContext = this;
         refreshListItems(parentId);
         initView();
@@ -79,9 +78,6 @@ public class ExportReportActivity extends Activity implements View.OnClickListen
 
         start_date_values = findViewById(R.id.start_date_values);
         end_date_values = findViewById(R.id.end_date_values);
-
-        export_excelreport = findViewById(R.id.export_excelreport);
-        export_excelreport.setOnClickListener(this);
 
         start_date_values.setOnClickListener(this);
         start_date_values.setText(DateUtil.getCurrentDate().toString());
@@ -109,20 +105,30 @@ public class ExportReportActivity extends Activity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.explore_submit:
+                if (DateUtil.compare_date(end_date_values.getText().toString(), start_date_values.getText().toString()) != 1) {
+                    Toast.makeText(mContext, "请选择正确日期", Toast.LENGTH_SHORT).show();
+                    break;
+                }
                 GetLittersTask mGetLittersTask = new GetLittersTask();
                 mGetLittersTask.execute(NetUtil.ACTION_URL_HEAD + NetUtil.ACTION_LITTER, ld_username_et.getText().toString(),
-                        ld_region, start_date_values.getText().toString(), end_date_values.getText().toString(), "", "ld_export");
+                        ld_region, start_date_values.getText().toString(), end_date_values.getText().toString(), "ld_search", "");
+                break;
             case R.id.export_submit:
-                ExcelUtil mExcelUtil = new ExcelUtil();
-                mExcelUtil.ExportLDToExcel("新村", start_date_values.getText().toString(), end_date_values.getText().toString(), mLitterModelList);
+                if (mLitterModelList == null || mLitterModelList.size() == 0) {
+                    Toast.makeText(mContext, "数据源为空，请加载...", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                String exportResult_msg = "导出失败...";
+                if (new ExcelUtil().ExportLDToExcel("新村", start_date_values.getText().toString(), end_date_values.getText().toString(), mLitterModelList)) {
+                    exportResult_msg = "导出成功...";
+                }
+                Toast.makeText(mContext, exportResult_msg, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.start_date_values:
                 showDatePicker(start_date_values);
                 break;
             case R.id.end_date_values:
                 showDatePicker(end_date_values);
-                break;
-            case R.id.export_excelreport:
                 break;
         }
     }
@@ -221,10 +227,10 @@ public class ExportReportActivity extends Activity implements View.OnClickListen
                         cityslistmap.add(map);
                     }
                 } else {
-                    Toast.makeText(mContext, "没有下级菜单了！", Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, "没有更多菜单啦！", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                Toast.makeText(mContext, "网络出错了！", Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext, "网络出错了！", Toast.LENGTH_SHORT).show();
             }
             mCitysAdapter.notifyDataSetChanged();
         }
@@ -267,6 +273,7 @@ public class ExportReportActivity extends Activity implements View.OnClickListen
             super.onPostExecute(result_msg);
             System.out.print(TAG + " result_msg:" + result_msg + "\n");
             if (!result_msg.equals("fail")) {
+                mLitterModelList.clear();
                 Gson mGson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
                 mLitterModelList = mGson.fromJson(result_msg, new TypeToken<List<String[]>>() {
                 }.getType());
@@ -305,12 +312,12 @@ public class ExportReportActivity extends Activity implements View.OnClickListen
                     total_price_r_tv.setText("收入：" + String.valueOf(total_price_r) + "元");
                     total_price_k_tv.setText(String.valueOf(total_price_k) + "元");
 
-                    Toast.makeText(mContext, "数据大小：" + mLitterModelList.size(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, "共：" + mLitterModelList.size() + "条数据", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(mContext, "没有下级菜单啦！", Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, "没有下级菜单啦！", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                Toast.makeText(mContext, "网络出错啦！", Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext, "网络出错啦！", Toast.LENGTH_SHORT).show();
             }
             dialog.dismiss();
         }

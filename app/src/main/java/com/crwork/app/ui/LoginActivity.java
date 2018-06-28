@@ -67,7 +67,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     break;
                 }
                 UserLoginAsyncTask mUserLoginAsyncTask = new UserLoginAsyncTask();
-                mUserLoginAsyncTask.execute(NetUtil.ACTION_URL_HEAD + NetUtil.ACTION_USER_LOGIN, userId, psw);
+                mUserLoginAsyncTask.execute(NetUtil.ACTION_URL_HEAD + NetUtil.ACTION_USER, userId, psw);
                 break;
         }
     }

@@ -18,12 +18,12 @@ import com.crwork.app.util.FileUtil;
 import java.io.File;
 
 /**
- * UploadDataFileActivity
+ * LitterUploadActivity
  *
  * @author xiezhenlin
  */
-public class UploadDataFileActivity extends Activity implements OnClickListener {
-    private final static String TAG = "UploadDataFileActivity";
+public class LitterUploadActivity extends Activity implements OnClickListener {
+    private final static String TAG = "LitterUploadActivity";
     private Context mContext;
     private final static int XN_LD_SELECTED = 1;
     private String filePath = "";
@@ -33,6 +33,8 @@ public class UploadDataFileActivity extends Activity implements OnClickListener 
     private TextView ld_file_name;
     private TextView ld_dataload_tip;
     private TextView total_weight_r, total_weight_ur, total_weight_k;
+    private TextView total_price_r, total_price_ur, total_price_k;
+    private TextView total_price_tip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +57,19 @@ public class UploadDataFileActivity extends Activity implements OnClickListener 
 
         ld_file_name = findViewById(R.id.ld_file_name);
         ld_dataload_tip = findViewById(R.id.ld_dataload_tip);
+
         total_weight_r = findViewById(R.id.total_weight_r);
         total_weight_ur = findViewById(R.id.total_weight_ur);
         total_weight_k = findViewById(R.id.total_weight_k);
+
+        total_price_r = findViewById(R.id.total_price_r);
+        total_price_ur = findViewById(R.id.total_price_ur);
+        total_price_k = findViewById(R.id.total_price_k);
+        total_price_tip=findViewById(R.id.total_price_tip);
+        total_price_r.setVisibility(View.GONE);
+        total_price_ur.setVisibility(View.GONE);
+        total_price_k.setVisibility(View.GONE);
+        total_price_tip.setVisibility(View.GONE);
     }
 
     @Override
@@ -164,7 +176,7 @@ public class UploadDataFileActivity extends Activity implements OnClickListener 
                 total_weight_ur.setText("0.00");
                 total_weight_k.setText("0.00");
                 ld_file_name.setText("");
-                Toast.makeText(mContext,"~~~~~~~OK~~~~~~~",Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext, "~~~~~~~OK~~~~~~~", Toast.LENGTH_LONG).show();
                 ld_dataload_tip.setText("数据上传成功");
             } else {
                 ld_upload_btn.setEnabled(true);

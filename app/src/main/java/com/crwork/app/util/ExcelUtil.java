@@ -20,7 +20,7 @@ public class ExcelUtil {
     public ExcelUtil() {
     }
 
-    public void ExportLDToExcel(String ld_region, String ld_start_date_str, String ld_end_date_str, ArrayList<String[]> mLitterModelList) {
+    public boolean ExportLDToExcel(String ld_region, String ld_start_date_str, String ld_end_date_str, ArrayList<String[]> mLitterModelList) {
         String[] ldTitle = {"编号", "姓名", "区域", "重量(kg)", "类型", "类型标号", "费用-/收入+(元)", "日期"};
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet("sheet1");
@@ -124,10 +124,12 @@ public class ExcelUtil {
         try {
             xlsStream = new FileOutputStream(xlsFile);
             workbook.write(xlsStream);
+            return true;
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
         } catch (IOException e2) {
             e2.printStackTrace();
         }
+        return false;
     }
 }

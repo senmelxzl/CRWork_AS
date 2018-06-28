@@ -39,14 +39,10 @@
             android:name=".ui.LitterWeighActivity"
             android:label="@string/xn_weighed_str" />
         <activity
-            android:name=".ui.LitterDataReportActivity"
-            android:label="@string/xn_report_str"
-            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
-        <activity
             android:name=".ui.SettingsActivity"
             android:label="@string/settings_title_tip" />
         <activity
-            android:name=".ui.UploadDataFileActivity"
+            android:name=".ui.LitterUploadActivity"
             android:label="@string/action_analysis_str" />
         <activity android:name=".ui.LitterDataFileExplorerActivity" />
         <!-- debug part start -->
@@ -75,13 +71,13 @@
         </activity>
         <!-- debug part end -->
         <activity
-            android:name=".ui.CitysManagement"
+            android:name=".ui.CitysActivity"
             android:label="@string/citys_management_str" />
         <activity
-            android:name=".ui.LitterTypeManagement"
+            android:name=".ui.LitterTypeActivity"
             android:label="@string/types_management_str" />
         <activity
-            android:name=".ui.UsersManagementActivity"
+            android:name=".ui.UsersActivity"
             android:label="@string/users_management_str" />
         <activity android:name=".ui.LoginActivity">
             <intent-filter>
@@ -94,7 +90,7 @@
             android:name=".ui.JoinCRActivity"
             android:label="@string/join_title_tip" />
         <activity
-            android:name=".ui.ExportReportActivity"
+            android:name=".ui.LitterReportActivity"
             android:label="@string/export_report_title_tip"></activity>
     </application>
 

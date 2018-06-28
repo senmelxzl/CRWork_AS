@@ -30,8 +30,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UsersManagementActivity extends Activity implements View.OnClickListener {
-    private static final String TAG = "UsersManagementActivity";
+public class UsersActivity extends Activity implements View.OnClickListener {
+    private static final String TAG = "UsersActivity";
     private Context mContext;
 
     private final static String USER_LIST = "user_list";
@@ -43,7 +43,7 @@ public class UsersManagementActivity extends Activity implements View.OnClickLis
     private int usr_ID = 0;
     private int regionID = 0;
 
-    private Button user_add_bt, user_modify_bt, user_delete_bt, user_reset_bt;
+    private Button user_add_bt, user_modify_bt, user_delete_bt, user_reset_bt, citys_parent_bt;
     private CheckBox is_cr;
     private Spinner mSpinner_city;
     private EditText userId_add_et, userName_add_et;
@@ -65,12 +65,12 @@ public class UsersManagementActivity extends Activity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.user_management);
+        setContentView(R.layout.activity_users);
         mContext = this;
         InitView();
         initLogindata();
         refreshUserListItems();
-        refreshCityListItems(parentId);
+        refreshCityListItems(parentId, CitysActivity.ACTION_GET_CITY_LIST);
     }
 
     private void refreshUserListItems() {
@@ -86,10 +86,10 @@ public class UsersManagementActivity extends Activity implements View.OnClickLis
         regionID = sp.getInt("regionID", 0);
     }
 
-    private void refreshCityListItems(String mparentId) {
+    private void refreshCityListItems(String mparentId, String citys_action) {
         parentId = mparentId;
         GetCitysAsyncTask mCitysAsyncTask = new GetCitysAsyncTask();
-        mCitysAsyncTask.execute(NetUtil.ACTION_URL_HEAD + NetUtil.ACTION_GETCITYS, mparentId, "0", "getcitylist");
+        mCitysAsyncTask.execute(NetUtil.ACTION_URL_HEAD + NetUtil.ACTION_GETCITYS, mparentId, "0", citys_action);
     }
 
     private void InitView() {
@@ -97,6 +97,7 @@ public class UsersManagementActivity extends Activity implements View.OnClickLis
         user_modify_bt = findViewById(R.id.user_modify_bt);
         user_delete_bt = findViewById(R.id.user_delete_bt);
         user_reset_bt = findViewById(R.id.user_reset_bt);
+        citys_parent_bt = findViewById(R.id.citys_parent_bt);
 
         userId_add_et = findViewById(R.id.userId_add_et);
         userName_add_et = findViewById(R.id.userName_add_et);
@@ -109,7 +110,7 @@ public class UsersManagementActivity extends Activity implements View.OnClickLis
         mSpinner_city.setOnItemSelectedListener(mcitysOnItemSelectedListener);
 
         users_list_lv = findViewById(R.id.users_list_lv);
-        mUsersAdapter = new SimpleAdapter(this, user_list_map, R.layout.user_data_list_item, new String[]{"user_id", "user_name", "user_type_str", "city_name_zh", "user_registerdate"},
+        mUsersAdapter = new SimpleAdapter(this, user_list_map, R.layout.activity_users_data_list_item, new String[]{"user_id", "user_name", "user_type_str", "city_name_zh", "user_registerdate"},
                 new int[]{R.id.user_id, R.id.user_name, R.id.user_type, R.id.user_region, R.id.user_registerdate});
         users_list_lv.setAdapter(mUsersAdapter);
         users_list_lv.setOnItemClickListener(userOnItemClickListener);
@@ -126,6 +127,7 @@ public class UsersManagementActivity extends Activity implements View.OnClickLis
         user_modify_bt.setOnClickListener(this);
         user_delete_bt.setOnClickListener(this);
         user_reset_bt.setOnClickListener(this);
+        citys_parent_bt.setOnClickListener(this);
     }
 
     /**
@@ -156,7 +158,7 @@ public class UsersManagementActivity extends Activity implements View.OnClickLis
                 return;
             } else {
                 parentId = String.valueOf(city_list_map.get(position).get("citys_id"));
-                refreshCityListItems(parentId);
+                refreshCityListItems(parentId, CitysActivity.ACTION_GET_CITY_LIST);
             }
 
         }
@@ -207,6 +209,9 @@ public class UsersManagementActivity extends Activity implements View.OnClickLis
                 break;
             case R.id.user_reset_bt:
                 reset();
+                break;
+            case R.id.citys_parent_bt:
+                refreshCityListItems(parentId, CitysActivity.ACTION_GET_PRE_CITY_LIST);
                 break;
         }
     }
@@ -339,6 +344,7 @@ public class UsersManagementActivity extends Activity implements View.OnClickLis
                         Map<String, Object> map = new HashMap<String, Object>();
                         map.put("citys_id", mCitysDomain.getId());
                         map.put("citys_parents_id", mCitysDomain.getParent_id());
+                        parentId = String.valueOf(mCitysDomain.getParent_id());
                         map.put("city_level", mCitysDomain.getCity_level());
                         map.put("citys_name_zh", mCitysDomain.getCity_name_zh());
                         city_list_map.add(map);

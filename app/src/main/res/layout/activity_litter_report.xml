@@ -5,7 +5,7 @@
     android:layout_margin="3dp"
     android:orientation="vertical">
 
-    <include layout="@layout/activity_export_report_action" />
+    <include layout="@layout/activity_litter_report_action" />
 
-    <include layout="@layout/activity_export_report_summary" />
+    <include layout="@layout/litter_data_summary_items" />
 </LinearLayout>

@@ -15,9 +15,16 @@
 
         <include
             android:id="@+id/ld_upload_detail"
-            layout="@layout/ld_upload_detail_summary"
+            layout="@layout/litter_data_summary_items"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/ld_dataload_tip"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:gravity="center" />
     </LinearLayout>
 
 

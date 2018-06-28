@@ -14,7 +14,6 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crwork.app.R;
@@ -30,13 +29,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CitysManagement extends Activity implements AdapterView.OnItemClickListener, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
-    private final static String TAG = "CitysManagement";
+public class CitysActivity extends Activity implements AdapterView.OnItemClickListener, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+    private final static String TAG = "CitysActivity";
     private Context mContext;
+    public static final String ACTION_GET_PRE_CITY_LIST = "getprecitylist";
+    public static final String ACTION_GET_CITY_LIST = "getcitylist";
+    public static final String ACTION_GET_CITY = "getcity";
 
     private int citys_add_status = 0;
     private String parentId = "1";
-    private String currentcitys = "中国";
     private int city_level = 1;
     private ArrayList<CitysDomain> mCitysDomainList;
 
@@ -44,33 +45,31 @@ public class CitysManagement extends Activity implements AdapterView.OnItemClick
     private SimpleAdapter mCitysAdapter = null;
     private List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 
-    private TextView citys_current_name_zh;
-    private Button citys_add_bt, citys_parent_bt, citys_reload_bt;
+    private Button citys_add_bt, citys_parent_bt;
     private EditText et_citys_name_zh;
     private CheckBox cb_citys_status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_citys_management);
+        setContentView(R.layout.activity_citys);
         mContext = this;
         initView();
+        refreshListItems(parentId, ACTION_GET_CITY_LIST);
     }
 
     private void initView() {
-        citys_current_name_zh = findViewById(R.id.citys_current_name_zh);
 
         citys_add_bt = findViewById(R.id.citys_add_bt);
         citys_parent_bt = findViewById(R.id.citys_parent_bt);
-        citys_reload_bt = findViewById(R.id.citys_reload_bt);
 
         et_citys_name_zh = findViewById(R.id.et_citys_name_zh);
 
         cb_citys_status = findViewById(R.id.cb_citys_status);
 
         citys_lv = findViewById(R.id.citys_list);
-        mCitysAdapter = new SimpleAdapter(this, list, R.layout.citys_data_list_item, new String[]{"citys_id", "citys_parents_id", "city_level", "citys_name_zh"},
-                new int[]{R.id.citys_id, R.id.citys_parents_id, R.id.city_level, R.id.citys_name_zh});
+        mCitysAdapter = new SimpleAdapter(this, list, R.layout.citys_data_list_item, new String[]{"citys_name_zh", "city_level", "city_status_cr"},
+                new int[]{R.id.citys_name_zh, R.id.city_level, R.id.city_status_cr});
         citys_lv.setAdapter(mCitysAdapter);
         citys_lv.setOnItemClickListener(this);
 
@@ -78,13 +77,12 @@ public class CitysManagement extends Activity implements AdapterView.OnItemClick
 
         citys_add_bt.setOnClickListener(this);
         citys_parent_bt.setOnClickListener(this);
-        citys_reload_bt.setOnClickListener(this);
     }
 
-    private void refreshListItems(String mparentId) {
+    private void refreshListItems(String mparentId, String citys_action) {
         parentId = mparentId;
         GetCitysTask mGetCitysTask = new GetCitysTask();
-        mGetCitysTask.execute(NetUtil.ACTION_URL_HEAD + NetUtil.ACTION_GETCITYS, mparentId, "0", "getcitylist");
+        mGetCitysTask.execute(NetUtil.ACTION_URL_HEAD + NetUtil.ACTION_GETCITYS, parentId, "0", citys_action);
     }
 
     @Override
@@ -95,10 +93,7 @@ public class CitysManagement extends Activity implements AdapterView.OnItemClick
                 mAddCitysTask.execute();
                 break;
             case R.id.citys_parent_bt:
-                refreshListItems(parentId);
-                break;
-            case R.id.citys_reload_bt:
-                refreshListItems(parentId);
+                refreshListItems(parentId, ACTION_GET_PRE_CITY_LIST);
                 break;
         }
     }
@@ -146,7 +141,7 @@ public class CitysManagement extends Activity implements AdapterView.OnItemClick
                 Toast.makeText(mContext, "添加失败", Toast.LENGTH_LONG).show();
             }
             dialog.dismiss();
-            refreshListItems(parentId);
+            refreshListItems(parentId, ACTION_GET_CITY_LIST);
         }
     }
 
@@ -192,8 +187,11 @@ public class CitysManagement extends Activity implements AdapterView.OnItemClick
                         Map<String, Object> map = new HashMap<String, Object>();
                         map.put("citys_id", mCitysDomain.getId());
                         map.put("citys_parents_id", mCitysDomain.getParent_id());
-                        map.put("city_level", mCitysDomain.getCity_level());
+                        parentId = String.valueOf(mCitysDomain.getParent_id());
+                        map.put("city_level", (mCitysDomain.getCity_level() - 1) + "级区域");
+                        city_level = mCitysDomain.getCity_level();
                         map.put("citys_name_zh", mCitysDomain.getCity_name_zh());
+                        map.put("city_status_cr", mCitysDomain.getCity_status_cr() == 0 ? "未分类" : "已分类");
                         list.add(map);
                     }
                 } else {
@@ -203,7 +201,6 @@ public class CitysManagement extends Activity implements AdapterView.OnItemClick
                 Toast.makeText(mContext, "网络出错了！", Toast.LENGTH_LONG).show();
             }
             mCitysAdapter.notifyDataSetChanged();
-            citys_current_name_zh.setText(currentcitys);
             dialog.dismiss();
         }
     }
@@ -211,12 +208,8 @@ public class CitysManagement extends Activity implements AdapterView.OnItemClick
     @Override
     public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
         String citys_id = String.valueOf(list.get(position).get("citys_id"));
-        currentcitys = String.valueOf(list.get(position).get("citys_name_zh"));
         parentId = String.valueOf(list.get(position).get("citys_parents_id"));
-        city_level = (Integer) list.get(position).get("city_level");
         Log.i(TAG, "citys_id is:" + citys_id);
-        Log.i(TAG, "city_level is:" + city_level);
-        Log.i(TAG, "currentcitys is:" + currentcitys);
-        refreshListItems(citys_id);
+        refreshListItems(citys_id, ACTION_GET_CITY_LIST);
     }
 }

@@ -21,8 +21,8 @@ public class NetUtil {
     private final static String TAG = "NetUtil";
     public final static String ACTION_URL_HEAD = "http://66.98.126.237:8080/CRWork_Web/servlet/";
     public final static String ACTION_UPLOAD_FILE = "UploadFileServlet";
-    public final static String ACTION_GETCITYS = "GetCitysServlet";
-    public final static String ACTION_USER_LOGIN = "MUserLoginServlet";
+    public final static String ACTION_GETCITYS = "MCitysServlet";
+    public final static String ACTION_USER_LOGIN="MUserLoginServlet";
     public final static String ACTION_USER="MUserServlet";
     public final static String ACTION_USER_ADD="MUserAddServlet";
     public final static String ACTION_USER_MODIFY="MUserModifyServlet";

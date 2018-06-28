@@ -6,9 +6,9 @@
     android:layout_margin="3dp"
     android:background="@drawable/litter_data_list_lyt_border"
     android:orientation="vertical"
-    tools:context=".ui.CitysManagement">
+    tools:context=".ui.CitysActivity">
 
-    <include layout="@layout/citys_operate_lyt" />
+    <include layout="@layout/activity_citys_operate_lyt" />
 
     <View
         android:layout_width="match_parent"
