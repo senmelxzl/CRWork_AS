@@ -34,7 +34,7 @@ public class LitterUploadActivity extends Activity implements OnClickListener {
     private TextView ld_dataload_tip;
     private TextView total_weight_r, total_weight_ur, total_weight_k;
     private TextView total_price_r, total_price_ur, total_price_k;
-    private TextView total_price_tip;
+    private TextView total_price_mng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +65,11 @@ public class LitterUploadActivity extends Activity implements OnClickListener {
         total_price_r = findViewById(R.id.total_price_r);
         total_price_ur = findViewById(R.id.total_price_ur);
         total_price_k = findViewById(R.id.total_price_k);
-        total_price_tip=findViewById(R.id.total_price_tip);
+        total_price_mng=findViewById(R.id.total_price_mng);
         total_price_r.setVisibility(View.GONE);
         total_price_ur.setVisibility(View.GONE);
         total_price_k.setVisibility(View.GONE);
-        total_price_tip.setVisibility(View.GONE);
+        total_price_mng.setVisibility(View.GONE);
     }
 
     @Override

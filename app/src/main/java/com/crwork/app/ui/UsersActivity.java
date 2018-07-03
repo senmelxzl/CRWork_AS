@@ -174,6 +174,7 @@ public class UsersActivity extends Activity implements View.OnClickListener {
     private AdapterView.OnItemClickListener userOnItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            isSpinnerFirst = false;
             usr_ID = Integer.parseInt(String.valueOf(user_list_map.get(position).get("ID")));
             userId_add_et.setText(String.valueOf(user_list_map.get(position).get("user_id")));
             userName_add_et.setText(String.valueOf(user_list_map.get(position).get("user_name")));
@@ -284,7 +285,7 @@ public class UsersActivity extends Activity implements View.OnClickListener {
                             map.put("city_name_zh", user[3]);
                             map.put("regionID", user[4]);
                             map.put("user_type", user[5]);
-                            map.put("user_type_str", user[5].equals("1") ? "管理员" : "普通用户");
+                            map.put("user_type_str", user[5].equals("0") || user[5].equals("1") ? "管理员" : "普通用户");
                             map.put("user_registerdate", user[6]);
                             map.put("iscr", user[7]);
                             if (user[7].equals("1")) {

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.nfc.NfcAdapter;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.util.Log;
@@ -21,11 +22,19 @@ import com.crwork.app.R;
 import com.crwork.app.debug.ClientActivity;
 import com.crwork.app.debug.NFCActivity;
 import com.crwork.app.debug.ServerActivity;
+import com.crwork.app.net.NetUtil;
 import com.crwork.app.util.ActivityController;
 import com.crwork.app.util.NullController;
 import com.crwork.app.util.PermissionHelper;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * s activity_home activity_home activity
@@ -35,6 +44,7 @@ import java.util.List;
 public class HomeActivity extends Activity implements OnClickListener {
     private final static String TAG = "HomeActivity";
     private final static boolean LOGV_ENABLED = false;
+    private Context mContext;
 
     private Button mBtnWeigh, mBtnReport, mBtnUpload, mBtnJoin;
     private TextView login_userName, login_userType;
@@ -46,6 +56,7 @@ public class HomeActivity extends Activity implements OnClickListener {
 
     private String loginUserName = "";
     private int loginUserType = 2;
+    private int regionID = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +65,7 @@ public class HomeActivity extends Activity implements OnClickListener {
         // check all application permissions
         PermissionHelper.init(this);
         setContentView(R.layout.activity_home);
+        mContext = this;
         initView();
         initLogindata();
         pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
@@ -69,8 +81,11 @@ public class HomeActivity extends Activity implements OnClickListener {
         SharedPreferences sp = getSharedPreferences("user_login_data", Context.MODE_PRIVATE);
         loginUserName = sp.getString("userName", "");
         loginUserType = sp.getInt("userType", 2);
+        regionID = sp.getInt("regionID", 0);
         login_userName.setText(loginUserName);
         login_userType.setText(loginUserType == 0 ? "超级管理员" : "管理员");
+        UserAsyncTask mUserAsyncTask = new UserAsyncTask();
+        mUserAsyncTask.execute("userIds_list", String.valueOf(regionID));
     }
 
     @Override
@@ -186,6 +201,74 @@ public class HomeActivity extends Activity implements OnClickListener {
         }
     }
 
+    /**
+     * 用户数据获取
+     */
+    private class UserAsyncTask extends AsyncTask<String, Object, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Toast.makeText(mContext, "开始写入", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            Map<String, String> map = new HashMap<>();
+            map.put("useraction", params[0]);
+            map.put("regionID", params[1]);
+            return new NetUtil().GetDataByPOST(NetUtil.ACTION_URL_HEAD + NetUtil.ACTION_USER, map);
+        }
+
+        @Override
+        protected void onPostExecute(String result_msg) {
+            super.onPostExecute(result_msg);
+            Toast.makeText(mContext, result_msg, Toast.LENGTH_SHORT).show();
+            System.out.print(TAG + result_msg);
+            if (!result_msg.equals("fail")) {
+                if (!result_msg.equals("success")) {
+                    Gson mGson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+                    ArrayList<String> userIds = mGson.fromJson(result_msg, new TypeToken<List<String>>() {
+                    }.getType());
+                    if (userIds != null || userIds.size() > 0) {
+                        writeUserIds(userIds);
+                        Toast.makeText(mContext, "写入完成！", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(mContext, "加载成功！", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(mContext, "加载失败！", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    /**
+     * 写入userIDs到文件
+     *
+     * @param msgs
+     */
+    public void writeUserIds(ArrayList<String> msgs) {
+        // 步骤1：获取输入值
+        if (msgs == null || msgs.size() == 0) return;
+        try {
+            // 步骤2:创建一个FileOutputStream对象,MODE_APPEND追加模式
+            FileOutputStream fos = openFileOutput("userIds.txt",
+                    MODE_APPEND);
+            // 步骤3：将获取过来的值放入文件
+            for (String msg : msgs) {
+                fos.write((msg + "\n").getBytes());
+            }
+            // 步骤4：关闭数据流
+            fos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 权限设置
+     */
     private PermissionHelper.PermissionCallback mPermissionCallback = new PermissionHelper.PermissionCallback() {
         public void onPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
             if (grantResults != null && grantResults.length > 0) {

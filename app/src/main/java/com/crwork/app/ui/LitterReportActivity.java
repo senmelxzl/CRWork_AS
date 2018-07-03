@@ -56,6 +56,9 @@ public class LitterReportActivity extends Activity implements View.OnClickListen
     private TextView total_weight_ur_tv, total_weight_r_tv, total_weight_k_tv;
     private TextView total_price_ur_tv, total_price_r_tv, total_price_k_tv;
 
+    private TextView total_price_mng;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,16 +102,18 @@ public class LitterReportActivity extends Activity implements View.OnClickListen
         total_price_r_tv = findViewById(R.id.total_price_r);
         total_price_k_tv = findViewById(R.id.total_price_k);
 
+        total_price_mng = findViewById(R.id.total_price_mng);
+
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.explore_submit:
-                if (DateUtil.compare_date(end_date_values.getText().toString(), start_date_values.getText().toString()) != 1) {
+                /*if (DateUtil.compare_date(end_date_values.getText().toString(), start_date_values.getText().toString()) != 1) {
                     Toast.makeText(mContext, "请选择正确日期", Toast.LENGTH_SHORT).show();
                     break;
-                }
+                }*/
                 GetLittersTask mGetLittersTask = new GetLittersTask();
                 mGetLittersTask.execute(NetUtil.ACTION_URL_HEAD + NetUtil.ACTION_LITTER, ld_username_et.getText().toString(),
                         ld_region, start_date_values.getText().toString(), end_date_values.getText().toString(), "ld_search", "");
@@ -279,12 +284,14 @@ public class LitterReportActivity extends Activity implements View.OnClickListen
                 }.getType());
                 System.out.print(TAG + " litter data size:" + mLitterModelList.size() + "\n");
                 if (mLitterModelList != null && mLitterModelList.size() > 0) {
+                    double total_weight = 0.00;
                     double total_weight_ur = 0.00;
                     double total_weight_r = 0.00;
                     double total_weight_k = 0.00;
                     double total_price_ur = 0.00;
                     double total_price_r = 0.00;
                     double total_price_k = 0.00;
+                    double total_price_io = 0.00;
                     for (int i = 0; i < mLitterModelList.size(); i++) {
                         String litter_type = mLitterModelList.get(i)[5];
                         double litter_weight = Double.parseDouble(mLitterModelList.get(i)[3]);
@@ -299,6 +306,7 @@ public class LitterReportActivity extends Activity implements View.OnClickListen
                             total_weight_k = Arith.add(total_weight_k, litter_weight);
                             total_price_k = Arith.add(total_price_k, litter_price);
                         }
+                        total_weight = Arith.add(total_weight, litter_weight);
                         for (int j = 0; j < mLitterModelList.get(i).length; j++) {
                             System.out.print(TAG + mLitterModelList.get(i)[j]);
                         }
@@ -308,10 +316,18 @@ public class LitterReportActivity extends Activity implements View.OnClickListen
                     total_weight_r_tv.setText(String.valueOf(total_weight_r) + "kg");
                     total_weight_k_tv.setText(String.valueOf(total_weight_k) + "kg");
                     //total price
-                    total_price_ur_tv.setText("费用：" + String.valueOf(total_price_ur) + "元");
-                    total_price_r_tv.setText("收入：" + String.valueOf(total_price_r) + "元");
-                    total_price_k_tv.setText(String.valueOf(total_price_k) + "元");
+                    total_price_ur_tv.setText("费用:" + String.valueOf(total_price_ur) + "元");
+                    total_price_r_tv.setText("收入:" + String.valueOf(total_price_r) + "元");
+                    total_price_k_tv.setText("价值:" + String.valueOf(total_price_k) + "元");
 
+                    if (total_price_ur > total_price_r) {
+                        total_price_mng.setText("总重量:" + total_weight + "kg" + "\n\n" + "支出:" + Arith.sub(total_price_ur, total_price_r) + "元");
+                        //total_price_mng.setTextColor(getResources().getColor(R.color.dimgrey));
+                        total_price_mng.setBackgroundColor(getResources().getColor(R.color.dimgrey));
+                    } else {
+                        total_price_mng.setText("总重量:" + total_weight + "kg" + "\n\n" + "盈利:" + Arith.sub(total_price_r, total_price_ur) + "元");
+                        total_price_mng.setBackgroundColor(getResources().getColor(R.color.seagreen));
+                    }
                     Toast.makeText(mContext, "共：" + mLitterModelList.size() + "条数据", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(mContext, "没有下级菜单啦！", Toast.LENGTH_SHORT).show();

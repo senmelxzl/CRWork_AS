@@ -29,7 +29,7 @@ public class NetUtil {
     public final static String ACTION_LITTER = "MLitterServlet";
 
     public NetUtil() {
-        System.out.print(TAG + " init !");
+        System.out.print(TAG + " init ! \n");
     }
 
     /**
@@ -55,7 +55,7 @@ public class NetUtil {
             // 设置http连接属性
             con.setRequestMethod("POST");
             con.setRequestProperty("Connection", "Keep-Alive");
-            con.setRequestProperty("Charset", "UTF-8");
+            con.setRequestProperty("Charset", "utf-8");
             con.setRequestProperty("Content-Type",
                     "multipart/form-data;boundary=" + boundary);
 
@@ -129,7 +129,7 @@ public class NetUtil {
                 //迭代器
                 for (Map.Entry<String, String> entry : params_origin.entrySet()) {
                     params.append(entry.getKey()).append("=").
-                            append(URLEncoder.encode(entry.getValue(), "UTF-8")).
+                            append(URLEncoder.encode(entry.getValue(), "utf-8")).
                             append("&");
                 }
                 params.deleteCharAt(params.length() - 1);
@@ -204,7 +204,7 @@ public class NetUtil {
     public static String ParamsEncoder(String params_origin) {
         String params = "";
         try {
-            return URLEncoder.encode(params_origin, "UTF-8");
+            return URLEncoder.encode(params_origin, "utf-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

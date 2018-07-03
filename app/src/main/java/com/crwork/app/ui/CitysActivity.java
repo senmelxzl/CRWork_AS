@@ -81,8 +81,8 @@ public class CitysActivity extends Activity implements AdapterView.OnItemClickLi
 
     private void refreshListItems(String mparentId, String citys_action) {
         parentId = mparentId;
-        GetCitysTask mGetCitysTask = new GetCitysTask();
-        mGetCitysTask.execute(NetUtil.ACTION_URL_HEAD + NetUtil.ACTION_GETCITYS, parentId, "0", citys_action);
+        CitysTask mCitysTask = new CitysTask();
+        mCitysTask.execute(NetUtil.ACTION_URL_HEAD + NetUtil.ACTION_GETCITYS, parentId, "0", citys_action);
     }
 
     @Override
@@ -148,7 +148,7 @@ public class CitysActivity extends Activity implements AdapterView.OnItemClickLi
     /**
      * 获取服务器城市数据列表
      */
-    private class GetCitysTask extends AsyncTask<String, Object, String> {
+    private class CitysTask extends AsyncTask<String, Object, String> {
         private ProgressDialog dialog;
 
         @Override
