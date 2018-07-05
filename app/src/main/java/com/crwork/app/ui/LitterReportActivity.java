@@ -110,10 +110,10 @@ public class LitterReportActivity extends Activity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.explore_submit:
-                /*if (DateUtil.compare_date(end_date_values.getText().toString(), start_date_values.getText().toString()) != 1) {
+                if (DateUtil.compare_date(end_date_values.getText().toString(), start_date_values.getText().toString()) != 1) {
                     Toast.makeText(mContext, "请选择正确日期", Toast.LENGTH_SHORT).show();
                     break;
-                }*/
+                }
                 GetLittersTask mGetLittersTask = new GetLittersTask();
                 mGetLittersTask.execute(NetUtil.ACTION_URL_HEAD + NetUtil.ACTION_LITTER, ld_username_et.getText().toString(),
                         ld_region, start_date_values.getText().toString(), end_date_values.getText().toString(), "ld_search", "");

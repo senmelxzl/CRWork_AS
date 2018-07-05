@@ -130,4 +130,20 @@ public class FileUtil {
     public int getTotalCount() {
         return total_count;
     }
+
+    /**
+     * get postfix of the path
+     *
+     * @param path
+     * @return
+     */
+    public static String getPostfix(String path) {
+        if (path == null || ExcelUtil.EMPTY.equals(path.trim())) {
+            return ExcelUtil.EMPTY;
+        }
+        if (path.contains(ExcelUtil.POINT)) {
+            return path.substring(path.lastIndexOf(ExcelUtil.POINT) + 1, path.length());
+        }
+        return ExcelUtil.EMPTY;
+    }
 }

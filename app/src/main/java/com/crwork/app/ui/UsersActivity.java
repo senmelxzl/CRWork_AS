@@ -2,6 +2,7 @@ package com.crwork.app.ui;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -25,8 +26,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -61,6 +64,8 @@ public class UsersActivity extends Activity implements View.OnClickListener {
     private Spinner usertype_sp;
     private ArrayAdapter usertype_adapter;
     private boolean isSpinnerFirst = true;
+
+    private Button user_import;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,11 +128,14 @@ public class UsersActivity extends Activity implements View.OnClickListener {
 
         iscr_percent = findViewById(R.id.iscr_percent);
 
+        user_import = findViewById(R.id.user_import);
+
         user_add_bt.setOnClickListener(this);
         user_modify_bt.setOnClickListener(this);
         user_delete_bt.setOnClickListener(this);
         user_reset_bt.setOnClickListener(this);
         citys_parent_bt.setOnClickListener(this);
+        user_import.setOnClickListener(this);
     }
 
     /**
@@ -214,6 +222,10 @@ public class UsersActivity extends Activity implements View.OnClickListener {
             case R.id.citys_parent_bt:
                 refreshCityListItems(parentId, CitysActivity.ACTION_GET_PRE_CITY_LIST);
                 break;
+            case R.id.user_import:
+                Intent intent = new Intent(this, LitterDataFileExplorerActivity.class);
+                startActivityForResult(intent, 1);
+                break;
         }
     }
 
@@ -229,6 +241,23 @@ public class UsersActivity extends Activity implements View.OnClickListener {
         user_delete_bt.setEnabled(false);
         user_modify_bt.setEnabled(false);
         usertype_sp.getSelectedView().setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            String filePath = data.getStringExtra("apk_path");
+            ExcelUtil mExcelUtil = new ExcelUtil();
+            try {
+                ArrayList<String[]> list = (ArrayList<String[]>) mExcelUtil.readExcel(filePath);
+                for (String[] sds : list) {
+                    System.out.print(TAG + " xiezhenlin" + " 姓名：" + sds[0] + " 人口：" + sds[1]);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -261,6 +290,11 @@ public class UsersActivity extends Activity implements View.OnClickListener {
                         map.put("ID", String.valueOf(usr_ID));
                     }
                 }
+            }
+            Iterator<Map.Entry<String, String>> iterator = map.entrySet().iterator();
+            while (iterator.hasNext()) {
+                Map.Entry<String, String> entry = iterator.next();
+                System.out.println(TAG + "key=" + entry.getKey() + "valve=" + entry.getValue());
             }
             return new NetUtil().GetDataByPOST(NetUtil.ACTION_URL_HEAD + NetUtil.ACTION_USER, map);
         }
@@ -338,7 +372,7 @@ public class UsersActivity extends Activity implements View.OnClickListener {
                 Gson mGson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
                 ArrayList<CitysDomain> cityslist = mGson.fromJson(result_msg, new TypeToken<List<CitysDomain>>() {
                 }.getType());
-                System.out.print(TAG + "data size:" + cityslist.size());
+                System.out.print(TAG + " city data size:" + cityslist.size() + "\n");
                 city_list_map.clear();
                 if (cityslist != null && cityslist.size() > 0) {
                     for (CitysDomain mCitysDomain : cityslist) {
